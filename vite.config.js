@@ -7,6 +7,9 @@ import AutoImport from "unplugin-auto-import/vite"
 import Components from "unplugin-vue-components/vite"
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers"
 
+import Icons from "unplugin-icons/vite"
+import IconsResolver from "unplugin-icons/resolver"
+
 import viteCompression from "vite-plugin-compression"
 
 export default defineConfig({
@@ -14,9 +17,13 @@ export default defineConfig({
         vue(),
         viteCompression(), // compress all files
         AutoImport({
+            imports: ["vue"],
             resolvers: [
                 ElementPlusResolver({
                     importStyle: "sass",
+                }),
+                IconsResolver({
+                    prefix: "Icon",
                 }),
             ],
         }),
@@ -25,7 +32,13 @@ export default defineConfig({
                 ElementPlusResolver({
                     importStyle: "sass",
                 }),
+                IconsResolver({
+                    enabledCollections: ["ep"],
+                }),
             ],
+        }),
+        Icons({
+            autoInstall: true,
         }),
     ],
     css: {

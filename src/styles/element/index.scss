@@ -25,3 +25,6 @@
     "default": 80px
   )
 );
+
+// 這樣主題色才會跟著亮暗模式變化
+@use "element-plus/theme-chalk/src/dark/css-vars.scss" as *;
