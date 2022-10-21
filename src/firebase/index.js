@@ -32,7 +32,7 @@ export const _signIn = async () => {
 }
 
 export const getIdTokenPromise = () => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             unsubscribe()
             if (user) {
@@ -41,7 +41,7 @@ export const getIdTokenPromise = () => {
                         resolve(idToken)
                     },
                     (error) => {
-                        resolve(null)
+                        resolve(error)
                     }
                 )
             } else {
