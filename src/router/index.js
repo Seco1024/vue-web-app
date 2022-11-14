@@ -45,21 +45,9 @@ const router = createRouter({
                     component: () => import("@/views/System/Material/PageIndex.vue"),
                 },
                 {
-                    path: "good",
-                    name: "存貨",
-                    component: () => import("@/views/System/Good/IndexFrame.vue"),
-                    children: [
-                        {
-                            path: "",
-                            name: "存貨列表",
-                            component: () => import("@/views/System/Good/ProductPage.vue"),
-                        },
-                        {
-                            path: "material",
-                            name: "材料列表",
-                            component: () => import("@/views/System/Good/MaterialPage.vue"),
-                        },
-                    ],
+                    path: "material-record",
+                    name: "材料紀錄",
+                    component: () => import("@/views/System/MaterialRecord/PageIndex.vue"),
                 },
                 {
                     path: "employee",
