@@ -1,16 +1,16 @@
 <script setup>
 import BigSmallCard from "@/layouts/BigSmallCard.vue"
-import ProductTable from "./components/ProductTable.vue"
-import ProductTag from "./components/ProductTag.vue"
+import MainTable from "./components/MainTable.vue"
+import TypeTags from "./components/TypeTags.vue"
 </script>
 
 <template>
     <BigSmallCard>
         <template #big-card>
-            <ProductTable></ProductTable>
+            <MainTable></MainTable>
         </template>
         <template #small-card>
-            <ProductTag></ProductTag>
+            <TypeTags></TypeTags>
         </template>
     </BigSmallCard>
 </template>

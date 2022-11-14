@@ -60,12 +60,7 @@ export const signOut = async () => {
     loading.close()
 }
 
-export const signUp = async ({
-    firstName,
-    lastName,
-    phoneNumber,
-    howToKnowUs,
-}) => {
+export const signUp = async ({ firstName, lastName, phoneNumber, howToKnowUs }) => {
     const main = async () => {
         const idToken = await getIdTokenPromise()
         if (!idToken) {
@@ -91,7 +86,7 @@ export const signUp = async ({
         )
         console.log("response:", response)
 
-        if (response.data.success) router.push("/system")
+        if (response.data.success) router.push("/new-user-registration")
         else return response.data.message
     }
 

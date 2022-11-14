@@ -14,7 +14,7 @@
 import { computed } from "vue"
 import { useRoute } from "vue-router"
 import { useSystemStore } from "@/stores/system"
-import { signOut } from "@/utils/user"
+import { signOut } from "@/apis/user"
 
 const route = useRoute()
 const store = useSystemStore()

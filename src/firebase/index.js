@@ -38,6 +38,7 @@ export const getIdTokenPromise = () => {
             if (user) {
                 getIdToken(user).then(
                     (idToken) => {
+                        console.log("idToken:", idToken)
                         resolve(idToken)
                     },
                     (error) => {

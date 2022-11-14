@@ -3,7 +3,7 @@ import { defineStore } from "pinia"
 export const useSystemStore = defineStore({
     id: "system",
     state: () => ({
-        isCollapse: true,
+        isCollapse: false,
     }),
     getters: {
         // doubleCount: (state) => state.counter * 2,
