@@ -1,5 +1,5 @@
 <script setup="props">
-import { defineProps, defineEmits, computed } from "vue"
+import { computed } from "vue"
 
 const props = defineProps(["title"])
 
@@ -21,9 +21,7 @@ const confirmClick = () => emit("confirmClick")
         <template #footer>
             <div style="flex: auto">
                 <el-button @click.prevent="cancelClick">cancel</el-button>
-                <el-button type="primary" @click.prevent="confirmClick"
-                    >confirm</el-button
-                >
+                <el-button type="primary" @click.prevent="confirmClick">confirm</el-button>
             </div>
         </template>
     </el-drawer>
