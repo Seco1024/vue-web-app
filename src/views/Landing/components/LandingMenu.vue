@@ -1,6 +1,6 @@
 <script setup>
 import CeranaLogo from "@/components/icons/CeranaLogo.vue"
-import { signIn } from "@/utils/user"
+import { signIn } from "@/apis/user"
 </script>
 
 <template>
@@ -11,10 +11,7 @@ import { signIn } from "@/utils/user"
             <div class="flex-grow"></div>
             <div class="nav-grp">
                 <el-button class="nav-button" @click="signIn" text>
-                    <img
-                        style="margin-right: 10px; width: 18px"
-                        src="@/assets/img/google.png"
-                    />Google 登入
+                    <img style="margin-right: 10px; width: 18px" src="@/assets/img/google.png" />Google 登入
                 </el-button>
             </div>
         </div>
@@ -50,7 +47,7 @@ import { signIn } from "@/utils/user"
 }
 .nav-button {
     height: 100%;
-    padding: 8px 40px !important; 
+    padding: 8px 40px !important;
     border-radius: 10px;
 }
 .nav-button > span {

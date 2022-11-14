@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router"
 import { getIdTokenPromise } from "@/firebase"
-import { getUserProfile } from "@/utils/user"
+import { getUserProfile } from "@/apis/user"
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,7 +16,7 @@ const router = createRouter({
         {
             path: "/new-user-registration",
             name: "new-user-registration",
-            component: () => import("@/views/System/NewUser/NewUserView.vue"),
+            component: () => import("@/views/System/NewUser/PageIndex.vue"),
             meta: {
                 requiresAuth: true,
             },
@@ -24,7 +24,7 @@ const router = createRouter({
         {
             path: "/system",
             name: "system",
-            component: () => import("@/views/System//SystemView.vue"),
+            component: () => import("@/views/System/PageIndex.vue"),
             meta: {
                 requiresAuth: true,
             },
@@ -36,20 +36,13 @@ const router = createRouter({
                 },
                 {
                     path: "product",
-                    name: "商品",
-                    component: () => import("@/views/System/Product/IndexFrame.vue"),
-                    children: [
-                        {
-                            path: "",
-                            name: "商品清單",
-                            component: () => import("@/views/System/Product/ProductPage.vue"),
-                        },
-                        {
-                            path: "material",
-                            name: "材料清單",
-                            component: () => import("@/views/System/Product/MaterialPage.vue"),
-                        },
-                    ],
+                    name: "商品清單",
+                    component: () => import("@/views/System/Product/PageIndex.vue"),
+                },
+                {
+                    path: "material",
+                    name: "材料清單",
+                    component: () => import("@/views/System/Material/PageIndex.vue"),
                 },
                 {
                     path: "good",
@@ -119,7 +112,7 @@ router.beforeEach(async (to, from, next) => {
         next("/")
     } else if (requiresGuest && idToken) {
         next("/system")
-    } else if (to.fullPath !== "/new-user-registration" && to.fullPath !== "/system") {
+    } else if (to.fullPath !== "/new-user-registration") {
         next()
     } else {
         // 有經過主功能在冊是否為有 UserProfile，避免每次換頁都發一次 Request

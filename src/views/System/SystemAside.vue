@@ -1,7 +1,7 @@
 <template>
     <div class="nav-menu">
         <el-menu
-            default-active="/system"
+            :default-active="router.currentRoute.value.path"
             class="el-menu-vertical"
             :collapse="isCollapse"
             background-color="#0c2135"
@@ -23,7 +23,7 @@
                     <span>商品</span>
                 </template>
                 <el-menu-item index="/system/product">商品清單</el-menu-item>
-                <el-menu-item index="/system/product/material"> 材料清單 </el-menu-item>
+                <el-menu-item index="/system/material"> 材料清單 </el-menu-item>
             </el-sub-menu>
             <el-sub-menu index="good">
                 <template #title>
@@ -63,11 +63,14 @@
 
 <script setup>
 import { computed } from "vue"
+import { useRouter } from "vue-router"
 
 import CeranaLogo from "@/components/icons/CeranaLogo.vue"
 import { useSystemStore } from "@/stores/system"
 
 const store = useSystemStore()
+const router = useRouter()
+console.log(router.currentRoute)
 
 const isCollapse = computed(() => store.isCollapse)
 </script>

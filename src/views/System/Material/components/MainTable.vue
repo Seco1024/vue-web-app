@@ -13,12 +13,12 @@
         </el-table>
     </div>
     <RightDrawer title="更新商品" v-model="open" @confirmClick="confirmEdit" @cancelClick="cancelEdit">
-        <ProductForm :form="form" />
+        <AddForm :form="form" />
     </RightDrawer>
 </template>
 
 <script setup>
-import ProductForm from "./ProductForm.vue"
+import AddForm from "./AddForm.vue"
 import { ref, reactive } from "vue"
 const open = ref(false)
 const form = reactive({
