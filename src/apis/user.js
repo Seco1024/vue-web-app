@@ -10,7 +10,6 @@ export const getUserProfile = async () => {
             return null
         }
 
-        // const url = `http://localhost:5171/user/profile`
         const url = `${import.meta.env.VITE_API_URL}/api/user/profile`
         const response = await axios.get(url, {
             headers: {
@@ -67,7 +66,6 @@ export const signUp = async ({ firstName, lastName, phoneNumber, howToKnowUs }) 
             return null
         }
 
-        // const url = `http://localhost:5171/user/signup`
         const url = `${import.meta.env.VITE_API_URL}/api/user/signup`
 
         const response = await axios.post(
