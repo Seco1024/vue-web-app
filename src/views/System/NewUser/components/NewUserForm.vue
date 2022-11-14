@@ -17,11 +17,7 @@
         </el-form-item>
         <el-form-item label="怎麼知道這個服務？">
             <el-radio-group v-model="form.howToKnowUs">
-                <el-radio
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                />
+                <el-radio v-for="item in options" :key="item.value" :label="item.label" />
             </el-radio-group>
         </el-form-item>
         <el-button type="primary" @click="submit">進入系統！</el-button>
@@ -30,7 +26,7 @@
 
 <script setup>
 import { reactive } from "vue"
-import { signUp } from "@/utils/user"
+import { signUp } from "@/apis/user"
 
 const form = reactive({
     firstName: "",
