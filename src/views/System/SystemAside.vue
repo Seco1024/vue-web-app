@@ -120,7 +120,7 @@ const isCollapse = computed(() => store.isCollapse)
         }
     }
 
-    ::v-deep .el-submenu__title {
+    :deep .el-submenu__title {
         background-color: #001529 !important;
     }
 
