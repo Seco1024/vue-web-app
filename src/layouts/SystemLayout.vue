@@ -25,6 +25,15 @@
 }
 .el-aside {
     width: auto;
+    overflow: visible;
+    z-index: 50;
+}
+@media (max-width: 512px) {
+    .el-aside {
+        position: absolute;
+        display: block;
+        top: 6vh;
+    }
 }
 .background {
     background-color: var(--el-bg-color-overlay);

@@ -1,17 +1,15 @@
 <template>
-    <div>
-        <el-button type="primary">新增商品</el-button>
-        <el-table :data="tableData" stripe max-height="75vh" size="large" @row-click="openEdit">
-            <el-table-column prop="name" label="名稱" />
-            <el-table-column prop="type" label="種類">
-                <template #default="scope">
-                    {{ scope.row.type }}
-                </template>
-            </el-table-column>
-            <el-table-column prop="price" label="價格" />
-            <el-table-column prop="amount" label="存貨量" />
-        </el-table>
-    </div>
+    <el-button type="primary">新增商品</el-button>
+    <el-table :data="tableData" stripe max-height="75vh" size="large" @row-click="openEdit">
+        <el-table-column prop="name" label="名稱" />
+        <el-table-column prop="type" label="種類">
+            <template #default="scope">
+                {{ scope.row.type }}
+            </template>
+        </el-table-column>
+        <el-table-column prop="price" label="價格" />
+        <el-table-column prop="amount" label="存貨量" />
+    </el-table>
     <RightDrawer title="更新商品" v-model="open" @confirmClick="confirmEdit" @cancelClick="cancelEdit">
         <AddForm :form="form" />
     </RightDrawer>
