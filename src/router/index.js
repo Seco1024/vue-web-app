@@ -35,19 +35,38 @@ const router = createRouter({
                     component: () => import("@/views/System/CashView.vue"),
                 },
                 {
-                    path: "product",
-                    name: "商品清單",
-                    component: () => import("@/views/System/Product/PageIndex.vue"),
+                    path: "good",
+                    name: "存貨管理",
+                    component: () => import("@/views/System/Good/PageIndex.vue"),
+                    children: [
+                        {
+                            path: "product",
+                            name: "商品清單",
+                            component: () => import("@/views/System/Good/Product/PageIndex.vue"),
+                        },
+                        {
+                            path: "material",
+                            name: "材料清單",
+                            component: () => import("@/views/System/Good/Material/PageIndex.vue"),
+                        },
+                    ],
                 },
                 {
-                    path: "material",
-                    name: "材料清單",
-                    component: () => import("@/views/System/Material/PageIndex.vue"),
-                },
-                {
-                    path: "material-record",
-                    name: "材料紀錄",
-                    component: () => import("@/views/System/MaterialRecord/PageIndex.vue"),
+                    path: "record",
+                    name: "紀錄",
+                    component: () => import("@/views/System/Record/PageIndex.vue"),
+                    children: [
+                        {
+                            path: "product",
+                            name: "產品紀錄",
+                            component: () => import("@/views/System/Record/Product/PageIndex.vue"),
+                        },
+                        {
+                            path: "material",
+                            name: "材料紀錄",
+                            component: () => import("@/views/System/Record/Material/PageIndex.vue"),
+                        },
+                    ],
                 },
                 {
                     path: "employee",

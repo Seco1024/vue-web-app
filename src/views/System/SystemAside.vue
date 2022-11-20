@@ -22,8 +22,8 @@
                     <el-icon><i-ep-box /></el-icon>
                     <span>存貨</span>
                 </template>
-                <el-menu-item index="/system/product">商品存貨</el-menu-item>
-                <el-menu-item index="/system/material">材料存貨</el-menu-item>
+                <el-menu-item index="/system/good/product">商品存貨</el-menu-item>
+                <el-menu-item index="/system/good/material">材料存貨</el-menu-item>
             </el-sub-menu>
             <el-sub-menu index="record">
                 <template #title>
@@ -76,6 +76,11 @@ const isCollapse = computed(() => store.isCollapse)
 </script>
 
 <style scoped lang="less">
+@media (max-width: 512px) {
+    :deep .el-menu--collapse {
+        display: none;
+    }
+}
 .nav-menu {
     height: 100%;
     // background-color: #001529;
@@ -134,7 +139,6 @@ const isCollapse = computed(() => store.isCollapse)
         background-color: #0a60bd !important;
     }
 }
-
 .el-menu-vertical:not(.el-menu--collapse) {
     width: 250px;
     // height: calc(100% - 48px);
