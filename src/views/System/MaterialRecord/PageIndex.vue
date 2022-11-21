@@ -1,3 +1,3 @@
 <template>
-    <div>product</div>
+    <div>asdasd</div>
 </template>

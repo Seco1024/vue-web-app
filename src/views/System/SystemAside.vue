@@ -17,37 +17,37 @@
                 <el-icon><i-ep-shop /></el-icon>
                 <template #title>結帳介面</template>
             </el-menu-item>
-            <el-sub-menu index="product">
-                <template #title>
-                    <el-icon><i-ep-goods /></el-icon>
-                    <span>商品</span>
-                </template>
-                <el-menu-item index="/system/product">商品清單</el-menu-item>
-                <el-menu-item index="/system/material"> 材料清單 </el-menu-item>
-            </el-sub-menu>
             <el-sub-menu index="good">
                 <template #title>
                     <el-icon><i-ep-box /></el-icon>
                     <span>存貨</span>
                 </template>
-                <el-menu-item index="/system/good">商品存貨</el-menu-item>
+                <el-menu-item index="/system/good/product">商品存貨</el-menu-item>
                 <el-menu-item index="/system/good/material">材料存貨</el-menu-item>
+            </el-sub-menu>
+            <el-sub-menu index="record">
+                <template #title>
+                    <el-icon><i-ep-list /></el-icon>
+                    <span>記錄</span>
+                </template>
+                <el-menu-item index="/system/record">銷售記錄</el-menu-item>
+                <el-menu-item index="/system/record/material">材料記錄</el-menu-item>
             </el-sub-menu>
             <el-sub-menu index="employee">
                 <template #title
                     ><el-icon><i-ep-postcard /></el-icon>
                     <span>員工</span>
                 </template>
-                <el-menu-item index="/system/employee">員工表</el-menu-item>
-                <el-menu-item index="/system/employee/schedule">排班表</el-menu-item>
+                <el-menu-item index="/system/employee" disabled>員工表</el-menu-item>
+                <el-menu-item index="/system/employee/schedule" disabled>排班表</el-menu-item>
             </el-sub-menu>
             <el-sub-menu index="customer">
                 <template #title
                     ><el-icon><i-ep-postcard /></el-icon>
                     <span>客戶</span>
                 </template>
-                <el-menu-item index="/system/customer">客戶表</el-menu-item>
-                <el-menu-item index="/system/customer/discount">折扣類型</el-menu-item>
+                <el-menu-item index="/system/customer" disabled>客戶表</el-menu-item>
+                <el-menu-item index="/system/customer/discount" disabled>折扣類型</el-menu-item>
             </el-sub-menu>
             <el-menu-item disabled>
                 <el-icon><i-ep-dataAnalysis /></el-icon>
@@ -76,6 +76,11 @@ const isCollapse = computed(() => store.isCollapse)
 </script>
 
 <style scoped lang="less">
+@media (max-width: 512px) {
+    :deep .el-menu--collapse {
+        display: none;
+    }
+}
 .nav-menu {
     height: 100%;
     // background-color: #001529;
@@ -134,7 +139,6 @@ const isCollapse = computed(() => store.isCollapse)
         background-color: #0a60bd !important;
     }
 }
-
 .el-menu-vertical:not(.el-menu--collapse) {
     width: 250px;
     // height: calc(100% - 48px);

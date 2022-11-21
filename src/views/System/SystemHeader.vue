@@ -6,7 +6,7 @@
         </el-button>
         <span class="page-name">{{ route.name }}</span>
         <DarkSwitch />
-        <el-button style="margin-top: auto; margin-bottom: auto" @click="signOut"> 登出 </el-button>
+        <AvatarButton />
     </div>
 </template>
 
@@ -14,7 +14,6 @@
 import { computed } from "vue"
 import { useRoute } from "vue-router"
 import { useSystemStore } from "@/stores/system"
-import { signOut } from "@/apis/user"
 
 const route = useRoute()
 const store = useSystemStore()
