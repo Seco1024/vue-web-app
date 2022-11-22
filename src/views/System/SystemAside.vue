@@ -30,7 +30,7 @@
                     <el-icon><i-ep-list /></el-icon>
                     <span>記錄</span>
                 </template>
-                <el-menu-item index="/system/record">銷售記錄</el-menu-item>
+                <el-menu-item index="/system/record/product">銷售記錄</el-menu-item>
                 <el-menu-item index="/system/record/material">材料記錄</el-menu-item>
             </el-sub-menu>
             <el-sub-menu index="employee">
