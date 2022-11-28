@@ -1,5 +1,4 @@
 <template>
-    <el-button type="primary">新增商品</el-button>
     <el-table :data="tableData" stripe max-height="75vh" size="large" @row-click="openEdit">
         <el-table-column prop="name" label="名稱" />
         <el-table-column prop="type" label="種類">

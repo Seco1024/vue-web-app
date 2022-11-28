@@ -85,7 +85,7 @@ const isCollapse = computed(() => store.isCollapse)
     height: 100%;
     // background-color: #001529;
     padding: 20px 20px 0px 20px;
-
+    overflow: scroll;
     .el-menu {
         border-right: none;
         border-radius: 10px;

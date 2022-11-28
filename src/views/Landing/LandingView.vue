@@ -1,4 +1,5 @@
 <script setup>
+import { onBeforeMount } from "vue"
 import HomeLayout from "./components/HomeLayout.vue"
 import AboutLayout from "./components/AboutLayout.vue"
 import LandingMenu from "./components/LandingMenu.vue"
@@ -7,12 +8,9 @@ import { useDark } from "@vueuse/core"
 
 // 如果不是 Dark mdoe 了話 css 會炸掉
 const isDark = useDark()
-const forceDark = setInterval(() => {
+onBeforeMount(() => {
     isDark.value = false
-    if (isDark.value === false) {
-        clearInterval(forceDark)
-    }
-}, 1000)
+})
 </script>
 
 <template>
@@ -23,9 +21,6 @@ const forceDark = setInterval(() => {
                 <HomeLayout />
                 <AboutLayout />
             </el-main>
-            <el-footer height="25px">
-                <Footer />
-            </el-footer>
         </el-container>
         <el-backtop :right="5" :bottom="5" />
     </div>
