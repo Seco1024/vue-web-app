@@ -7,12 +7,13 @@
         v-if="inputVisible"
         ref="InputRef"
         v-model="inputValue"
-        class="ml-2"
+        class="ml-2 button-new-tag"
         size="small"
         @keyup.enter="handleInputConfirm"
         @blur="handleInputConfirm"
     />
     <el-button v-else class="ml-2 button-new-tag" effect="light" @click="showInput">＋ 新增產品類型</el-button>
+    <el-button type="primary" class="ml-2 button-new-tag">新增商品</el-button>
 </template>
 
 <script setup>
