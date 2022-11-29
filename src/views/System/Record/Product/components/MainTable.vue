@@ -3,7 +3,10 @@
         <el-table-column type="expand">
             <template #default="scope">
                 <div class="note">
-                    <p m="t-0 b-2">備註：{{ scope.row.note }}</p>
+                    <p>訂單編號：{{ scope.row.uid }}</p>
+                    <p>建立時間：{{ scope.row.timestamp }}</p>
+                    <p>總價：{{ scope.row.totalPrice }}</p>
+                    <p>備註：{{ scope.row.note }}</p>
                 </div>
                 <div class="expand">
                     <el-table :data="scope.row.productList" stripe show-summary>
@@ -29,10 +32,17 @@
             filter-placement="bottom-end"
         >
             <template #default="scope">
-                <el-tag v-for="item in scope.row.tagList" class="tag" effect="plain" closable @close="handleCloseTag(item, scope.row.uid)">
+                <el-tag
+                    v-for="item in scope.row.tagList"
+                    class="tag"
+                    effect="plain"
+                    closable
+                    @close="handleCloseTag(item, scope.row.uid)"
+                    :key="item"
+                >
                     {{ item }}
                 </el-tag>
-            </template>
+        </template>
         </el-table-column>
         <el-table-column label="" width="70">
             <template #default="scope">
@@ -42,50 +52,25 @@
     </el-table>
 </template>
 
-<script lang="ts" setup>
-import { ref, reactive } from "vue"
+<script setup>
 import { Delete } from "@element-plus/icons-vue"
 
-const tag = ref("")
-const form = reactive({
-    uid: "",
-    timestamp: "",
-    totalPrice: "",
-    note: "",
-    productList: [
-        {
-            productName: "",
-            productId: "",
-            amount: "",
-            price: "",
-        },
-    ],
-    tagList: [
-        {
-            value: "",
-        },
-    ],
-})
-
-interface Order {
-    uid: string
-    timestamp: string
-    totalPrice: Number
-    note: string
-    productList: {
-        productName: string
-        productId: string
-        amount: Number
-        price: Number
-    }[]
-    tagList: string[]
-}
-
-const filterTag = (value: string, row: Order) => {
+const filterTag = (value, row) => {
     console.log(row.tagList)
     console.log(row.tagList.some((tag) => tag.valueOf() === value))
     return row.tagList.some((tag) => tag.valueOf() === value)
 }
+
+// const convertTime = (timestamp) => {
+//     const date = new Date(timestamp)
+//     const year = date.getFullYear()
+//     const month = date.getMonth() + 1
+//     const day = date.getDate()
+//     const hour = date.getHours()
+//     const minute = date.getMinutes()
+//     const second = date.getSeconds()
+//     return `${year}/${month}/${day} ${hour}:${minute}:${second}`
+// }
 
 const tableData = [
     {
