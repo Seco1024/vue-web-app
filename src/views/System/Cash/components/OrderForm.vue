@@ -1,15 +1,13 @@
-<script setup>
-import OrderProductTable from "./OrderProductTable.vue"
-</script>
+<script setup></script>
 <template>
-    <div>
-        <span>清單</span>
-        <OrderProductTable></OrderProductTable>
-        <el-input
-            v-model="note"
-            :autosize="{ minRows: 2, maxRows: 4 }"
-            type="textarea"
-            placeholder="附註"
-        />
+    <div class="content">
+        <slot></slot>
     </div>
 </template>
+<style lang="scss" scoped>
+.content {
+    :deep(>*) {
+        margin-bottom: 20px;
+    }
+}
+</style>
