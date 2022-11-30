@@ -39,7 +39,11 @@
     .el-aside {
         position: absolute;
         display: block;
-        top: 6vh;
+        top: 70px;
+    }
+    .r-side {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }
 .background {
