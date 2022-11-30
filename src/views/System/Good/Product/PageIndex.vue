@@ -1,20 +1,22 @@
 <script setup>
-import FloatPanel from "@/components/FloatPanel.vue"
+import FloatCard from "@/components/FloatCard.vue"
 import MainTable from "./components/MainTable.vue"
+import AddProduct from "./components/AddProduct.vue";
 import TypeTags from "./components/TypeTags.vue"
 </script>
 
 <template>
     <el-row class="wrapper">
-        <el-col :md="16" :xs="24">
-            <FloatPanel margin="ml-0">
+        <el-col :md="14" :xs="24">
+            <FloatCard margin="ml-0">
                 <MainTable></MainTable>
-            </FloatPanel>
+            </FloatCard>
         </el-col>
-        <el-col :md="8" :xs="24">
-            <FloatPanel margin="mr-0">
-                <TypeTags></TypeTags>
-            </FloatPanel>
+        <el-col :md="10" :xs="24">
+            <FloatCard>
+                <!-- <TypeTags></TypeTags> -->
+                <AddProduct></AddProduct>
+            </FloatCard>
         </el-col>
     </el-row>
 </template>

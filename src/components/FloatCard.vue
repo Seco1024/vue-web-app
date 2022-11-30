@@ -1,5 +1,10 @@
 <script setup>
-const props = defineProps(["margin"])
+const props = defineProps({
+    margin: {
+        type: String,
+        default: "mr-0",
+    },
+})
 console.log(props.margin)
 </script>
 
@@ -23,14 +28,6 @@ console.log(props.margin)
 }
 .mr-0 {
     margin-right: 0px !important;
-}
-@media (max-width: 991px) {
-    .ml-0 {
-        margin-left: 10px !important;
-    }
-    .mr-0 {
-        margin-right: 10px !important;
-    }
 }
 :deep .el-card__body > * {
     margin-bottom: 1vh;

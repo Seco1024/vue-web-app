@@ -19,5 +19,12 @@ footer {
     line-height: 2.5rem;
     color: var(--el-text-color-secondary);
     text-align: center;
+
+    backdrop-filter: blur(10px);
+}
+@media screen and (max-width: 480px) {
+    .el-card__body {
+        --el-card-padding: 3vw;
+    }
 }
 </style>

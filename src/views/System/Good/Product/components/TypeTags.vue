@@ -1,13 +1,13 @@
 <template>
     <span>產品類型</span>
-    <el-tag class="ml-2" v-for="item in dynamicTags" :key="item" effect="light" @close="handleClose(tag)">
+    <el-tag class="ml-2" closable v-for="item in dynamicTags" :key="item" effect="light" @close="handleClose(tag)">
         {{ item }}
     </el-tag>
     <el-input
         v-if="inputVisible"
         ref="InputRef"
         v-model="inputValue"
-        class="ml-2"
+        class="ml-2 button-new-tag"
         size="small"
         @keyup.enter="handleInputConfirm"
         @blur="handleInputConfirm"

@@ -11,18 +11,15 @@ const modelValue = computed({
     set() {},
 })
 
-const emit = defineEmits(["confirmClick", "cancelClick"])
-const cancelClick = () => emit("cancelClick")
-const confirmClick = () => emit("confirmClick")
+// const emit = defineEmits(["confirmClick", "cancelClick"])
+// const cancelClick = () => emit("cancelClick")
+// const confirmClick = () => emit("confirmClick")
 </script>
 <template>
     <el-drawer v-model="modelValue" modal :title="props.title" direction="rtl">
         <slot></slot>
         <template #footer>
-            <div style="flex: auto">
-                <el-button @click.prevent="cancelClick">cancel</el-button>
-                <el-button type="primary" @click.prevent="confirmClick">confirm</el-button>
-            </div>
+            <slot name="footer"></slot>
         </template>
     </el-drawer>
 </template>
