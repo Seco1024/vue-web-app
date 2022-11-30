@@ -1,13 +1,15 @@
 <script setup>
 import CashLayout from "@/layouts/CashLayout.vue"
+import ProductCardTable from "./components/ProductCardTable.vue";
+import OrderForm from "./components/OrderForm.vue";
 </script>
 <template>
     <CashLayout>
         <template #main>
-            <el-space wrap>
-                <el-card>asdas</el-card>
-            </el-space>
+            <ProductCardTable></ProductCardTable>
         </template>
-        <template #list>asdasdas</template>
+        <template #list>
+            <OrderForm></OrderForm>
+        </template>
     </CashLayout>
 </template>
