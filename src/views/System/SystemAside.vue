@@ -25,7 +25,11 @@
                 <el-menu-item index="/system/record/product">銷售記錄</el-menu-item>
                 <el-menu-item index="/system/record/material">材料記錄</el-menu-item>
             </el-sub-menu>
-            <el-sub-menu index="employee">
+            <el-menu-item>
+                <el-icon><i-ep-dataAnalysis /></el-icon>
+                <template #title>統計資料</template>
+            </el-menu-item>
+            <el-sub-menu index="employee" disabled>
                 <template #title
                     ><el-icon><i-ep-postcard /></el-icon>
                     <span>員工</span>
@@ -33,7 +37,7 @@
                 <el-menu-item index="/system/employee" disabled>員工表</el-menu-item>
                 <el-menu-item index="/system/employee/schedule" disabled>排班表</el-menu-item>
             </el-sub-menu>
-            <el-sub-menu index="customer">
+            <el-sub-menu index="customer" disabled>
                 <template #title
                     ><el-icon><i-ep-postcard /></el-icon>
                     <span>客戶</span>
@@ -41,10 +45,6 @@
                 <el-menu-item index="/system/customer" disabled>客戶表</el-menu-item>
                 <el-menu-item index="/system/customer/discount" disabled>折扣類型</el-menu-item>
             </el-sub-menu>
-            <el-menu-item disabled>
-                <el-icon><i-ep-dataAnalysis /></el-icon>
-                <template #title>統計資料</template>
-            </el-menu-item>
             <el-menu-item disabled>
                 <el-icon><i-ep-firstAidKit /></el-icon>
                 <template #title><span>擴充功能</span></template>
@@ -72,8 +72,12 @@ const isCollapse = computed(() => store.isCollapse)
     :deep .el-menu--collapse {
         display: none;
     }
+    .nav-menu {
+        padding: 0px 10px 0px 10px !important;
+    }
 }
 .nav-menu {
+    --el-menu-bg-color: var(--el-bg-color-overlay);
     height: 100%;
     // background-color: #001529;
     padding: 20px 20px 0px 20px;
