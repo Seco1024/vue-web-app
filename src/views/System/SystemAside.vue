@@ -1,6 +1,6 @@
 <template>
     <div class="nav-menu">
-        <el-menu :default-active="router.currentRoute.value.path" :collapse="isCollapse" router>
+        <el-menu class="el-menu-vertical" :default-active="router.currentRoute.value.path" :collapse="isCollapse" router>
             <div class="logo">
                 <cerana-logo class="img"></cerana-logo>
                 <span v-if="!isCollapse" class="title">CeranaPOS</span>

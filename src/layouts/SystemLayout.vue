@@ -20,6 +20,7 @@
     width: 100vw;
 }
 .el-aside {
+    width: auto;
     overflow: visible;
     z-index: 50;
 }
