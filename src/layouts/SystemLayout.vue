@@ -3,7 +3,7 @@
         <el-aside>
             <slot name="aside"></slot>
         </el-aside>
-        <el-container>
+        <el-container class="r-side">
             <el-header>
                 <slot name="header"></slot>
             </el-header>
@@ -19,14 +19,20 @@
     height: 100vh;
     width: 100vw;
 }
-.el-header {
-    padding: 0;
-    height: 48px;
-}
 .el-aside {
-    width: auto;
     overflow: visible;
     z-index: 50;
+}
+.r-side {
+    padding-right: 20px;
+}
+.el-header {
+    padding: 0;
+    height: 0;
+}
+.el-main {
+    padding: 0;
+    padding-top: 70px;
 }
 @media (max-width: 512px) {
     .el-aside {

@@ -1,12 +1,14 @@
 <template>
     <div class="header-wrapper">
-        <el-button class="aside-toggle" @click="handleToggle" text>
-            <el-icon :size="25" v-if="isCollapse"><i-ep-Expand /></el-icon>
-            <el-icon :size="25" v-if="!isCollapse"><i-ep-Fold /></el-icon>
-        </el-button>
-        <span class="page-name">{{ route.name }}</span>
-        <DarkSwitch />
-        <AvatarButton />
+        <div class="bar">
+            <el-button class="aside-toggle" @click="handleToggle" text>
+                <el-icon :size="25" v-if="isCollapse"><i-ep-Expand /></el-icon>
+                <el-icon :size="25" v-if="!isCollapse"><i-ep-Fold /></el-icon>
+            </el-button>
+            <span class="page-name">{{ route.name }}</span>
+            <DarkSwitch />
+            <AvatarButton />
+        </div>
     </div>
 </template>
 
@@ -30,13 +32,18 @@ const handleToggle = () => {
 
 <style scoped>
 .header-wrapper {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+}
+.bar {
     background-color: var(--el-bg-color-overlay);
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
     display: flex;
-    margin: 20px;
     border-radius: 10px;
     justify-content: space-between;
     box-shadow: var(--el-box-shadow-light);
+    z-index: 100;
 }
 .aside-toggle {
     width: 40px;

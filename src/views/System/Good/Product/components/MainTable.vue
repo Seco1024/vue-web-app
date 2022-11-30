@@ -6,18 +6,33 @@
                 {{ scope.row.type }}
             </template>
         </el-table-column>
-        <el-table-column prop="price" label="價格" />
-        <el-table-column prop="amount" label="存貨量" />
+        <!-- <el-table-column label="存貨/價錢">
+            <template #default="scope"> {{ scope.row.amount }}(${{ scope.row.price }})</template>
+        </el-table-column> -->
+        <el-table-column label="價錢">
+            <template #default="scope"> ${{ scope.row.price }} </template>
+        </el-table-column>
+        <el-table-column label="動作" width="140">
+            <template #default="scope">
+                <el-button size="small" @click="openEdit(scope.$index, scope.row)">編輯</el-button>
+                <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">刪除</el-button>
+            </template>
+        </el-table-column>
     </el-table>
-    <RightDrawer title="更新商品" v-model="open" @confirmClick="confirmEdit" @cancelClick="cancelEdit">
-        <AddForm :form="form" />
+    <RightDrawer title="更新商品" v-model="open">
+        <ProductForm :form="form" />
+        <template #footer>
+            <el-button @click.prevent="cancelEdit">取消</el-button>
+            <el-button type="primary" @click.prevent="confirmEdit">確認編輯</el-button>
+        </template>
     </RightDrawer>
 </template>
 
 <script setup>
-import AddForm from "./AddForm.vue"
+import ProductForm from "./ProductForm.vue"
 import { ref, reactive } from "vue"
 const open = ref(false)
+const drawerType = ref("")
 const form = reactive({
     name: "",
     type: "",
@@ -45,8 +60,19 @@ const openEdit = (row, event, column) => {
     open.value = true
 }
 
+const openAdd = () => {
+    form.name = ""
+    form.type = ""
+    form.price = ""
+    form.amount = ""
+    form.materialList = []
+
+    open.value = true
+}
+
 const cancelEdit = () => {
     console.log("cancel click: " + open.value)
+
     open.value = false
 }
 

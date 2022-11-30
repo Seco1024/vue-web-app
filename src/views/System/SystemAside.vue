@@ -1,14 +1,6 @@
 <template>
     <div class="nav-menu">
-        <el-menu
-            :default-active="router.currentRoute.value.path"
-            class="el-menu-vertical"
-            :collapse="isCollapse"
-            background-color="#0c2135"
-            text-color="#b7bdc3"
-            active-text-color="#0a60bd"
-            router
-        >
+        <el-menu :default-active="router.currentRoute.value.path" :collapse="isCollapse" router>
             <div class="logo">
                 <cerana-logo class="img"></cerana-logo>
                 <span v-if="!isCollapse" class="title">CeranaPOS</span>
@@ -111,7 +103,7 @@ const isCollapse = computed(() => store.isCollapse)
             font-family: monospace, sans-serif;
             font-size: 24px;
             font-weight: 700;
-            color: white;
+            color: var(--el-text-color-primary);
         }
     }
 
@@ -129,14 +121,10 @@ const isCollapse = computed(() => store.isCollapse)
         background-color: #001529 !important;
     }
 
-    // hover 高亮
-    .el-menu-item:hover {
-        color: #fff !important; // 菜单
-    }
-
     .el-menu-item.is-active {
         color: #fff !important;
-        background-color: #0a60bd !important;
+        background-color: var(--el-color-primary) !important;
+        border-radius: 6px;
     }
 }
 .el-menu-vertical:not(.el-menu--collapse) {

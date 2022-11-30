@@ -32,7 +32,7 @@ const router = createRouter({
                 {
                     path: "",
                     name: "結帳介面",
-                    component: () => import("@/views/System/CashView.vue"),
+                    component: () => import("@/views/System/Cash/PageIndex.vue"),
                 },
                 {
                     path: "good",

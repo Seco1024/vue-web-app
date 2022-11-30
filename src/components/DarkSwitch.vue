@@ -5,7 +5,7 @@ import { useDark, useToggle } from "@vueuse/core"
 const isDark = useDark()
 const toggleDark = useToggle(isDark)
 
-if (isDark.value === false) {
+if (isDark.value === true) {
     toggleDark()
 }
 </script>

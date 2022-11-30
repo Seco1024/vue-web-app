@@ -9,7 +9,7 @@ const getMaterialList = async () => {
             return null
         }
 
-        const url = `${import.meta.env.VITE_API_URL}/api/material/all`
+        const url = `${import.meta.env.VITE_API_URL}/api/material/predict`
         const response = await axios.get(url, {
             headers: {
                 Authorization: `Bearer ${idToken}`,
