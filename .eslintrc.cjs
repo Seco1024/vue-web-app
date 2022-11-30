@@ -11,6 +11,7 @@ module.exports = {
     rules: {
         indent: "off",
         "vue/html-indent": "off",
+            "prettier/prettier": ["error", { endOfLine: "off" }],
     },
     overrides: [
         {
