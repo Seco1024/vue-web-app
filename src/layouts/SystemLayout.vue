@@ -20,6 +20,7 @@
     width: 100vw;
 }
 .el-aside {
+    width: auto;
     overflow: visible;
     z-index: 50;
 }
@@ -38,7 +39,11 @@
     .el-aside {
         position: absolute;
         display: block;
-        top: 6vh;
+        top: 70px;
+    }
+    .r-side {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 }
 .background {

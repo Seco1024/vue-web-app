@@ -1,13 +1,20 @@
 <script setup>
 import CashLayout from "@/layouts/CashLayout.vue"
+import ProductCardTable from "./components/ProductCardTable.vue"
+import OrderForm from "./components/OrderForm.vue"
+import OrderProductTable from "./components/OrderProductTable.vue"
 </script>
 <template>
     <CashLayout>
         <template #main>
-            <el-space wrap>
-                <el-card>asdas</el-card>
-            </el-space>
+            <ProductCardTable></ProductCardTable>
         </template>
-        <template #list>asdasdas</template>
+        <template #list>
+            <OrderForm>
+                <OrderProductTable></OrderProductTable>
+                <el-input v-model="note" :autosize="{ minRows: 2, maxRows: 4 }" type="textarea" placeholder="附註" />
+                <el-button type="primary" @click="confirm">確認</el-button>
+            </OrderForm>
+        </template>
     </CashLayout>
 </template>
