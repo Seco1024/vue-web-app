@@ -1,6 +1,6 @@
 <template>
     <span>產品類型</span>
-    <el-tag class="ml-2" v-for="item in dynamicTags" :key="item" effect="light" @close="handleClose(tag)">
+    <el-tag class="ml-2" closable v-for="item in dynamicTags" :key="item" effect="light" @close="handleClose(tag)">
         {{ item }}
     </el-tag>
     <el-input
@@ -13,7 +13,6 @@
         @blur="handleInputConfirm"
     />
     <el-button v-else class="ml-2 button-new-tag" effect="light" @click="showInput">＋ 新增產品類型</el-button>
-    <el-button type="primary" class="ml-2 button-new-tag">新增商品</el-button>
 </template>
 
 <script setup>

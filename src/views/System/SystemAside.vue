@@ -1,14 +1,6 @@
 <template>
     <div class="nav-menu">
-        <el-menu
-            :default-active="router.currentRoute.value.path"
-            class="el-menu-vertical"
-            :collapse="isCollapse"
-            background-color="#0c2135"
-            text-color="#b7bdc3"
-            active-text-color="#0a60bd"
-            router
-        >
+        <el-menu class="el-menu-vertical" :default-active="router.currentRoute.value.path" :collapse="isCollapse" router>
             <div class="logo">
                 <cerana-logo class="img"></cerana-logo>
                 <span v-if="!isCollapse" class="title">CeranaPOS</span>
@@ -30,10 +22,14 @@
                     <el-icon><i-ep-list /></el-icon>
                     <span>記錄</span>
                 </template>
-                <el-menu-item index="/system/record">銷售記錄</el-menu-item>
+                <el-menu-item index="/system/record/product">銷售記錄</el-menu-item>
                 <el-menu-item index="/system/record/material">材料記錄</el-menu-item>
             </el-sub-menu>
-            <el-sub-menu index="employee">
+            <el-menu-item>
+                <el-icon><i-ep-dataAnalysis /></el-icon>
+                <template #title>統計資料</template>
+            </el-menu-item>
+            <el-sub-menu index="employee" disabled>
                 <template #title
                     ><el-icon><i-ep-postcard /></el-icon>
                     <span>員工</span>
@@ -41,7 +37,7 @@
                 <el-menu-item index="/system/employee" disabled>員工表</el-menu-item>
                 <el-menu-item index="/system/employee/schedule" disabled>排班表</el-menu-item>
             </el-sub-menu>
-            <el-sub-menu index="customer">
+            <el-sub-menu index="customer" disabled>
                 <template #title
                     ><el-icon><i-ep-postcard /></el-icon>
                     <span>客戶</span>
@@ -49,10 +45,6 @@
                 <el-menu-item index="/system/customer" disabled>客戶表</el-menu-item>
                 <el-menu-item index="/system/customer/discount" disabled>折扣類型</el-menu-item>
             </el-sub-menu>
-            <el-menu-item disabled>
-                <el-icon><i-ep-dataAnalysis /></el-icon>
-                <template #title>統計資料</template>
-            </el-menu-item>
             <el-menu-item disabled>
                 <el-icon><i-ep-firstAidKit /></el-icon>
                 <template #title><span>擴充功能</span></template>
@@ -80,8 +72,12 @@ const isCollapse = computed(() => store.isCollapse)
     :deep .el-menu--collapse {
         display: none;
     }
+    .nav-menu {
+        padding: 0px 10px 0px 10px !important;
+    }
 }
 .nav-menu {
+    --el-menu-bg-color: var(--el-bg-color-overlay);
     height: 100%;
     // background-color: #001529;
     padding: 20px 20px 0px 20px;
@@ -111,7 +107,7 @@ const isCollapse = computed(() => store.isCollapse)
             font-family: monospace, sans-serif;
             font-size: 24px;
             font-weight: 700;
-            color: white;
+            color: var(--el-text-color-primary);
         }
     }
 
@@ -129,14 +125,10 @@ const isCollapse = computed(() => store.isCollapse)
         background-color: #001529 !important;
     }
 
-    // hover 高亮
-    .el-menu-item:hover {
-        color: #fff !important; // 菜单
-    }
-
     .el-menu-item.is-active {
         color: #fff !important;
-        background-color: #0a60bd !important;
+        background-color: var(--el-color-primary) !important;
+        border-radius: 6px;
     }
 }
 .el-menu-vertical:not(.el-menu--collapse) {
