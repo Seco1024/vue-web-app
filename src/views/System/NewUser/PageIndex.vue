@@ -1,6 +1,6 @@
 <script setup>
 import CenteredCard from "@/layouts/CenteredCard.vue"
-import { signOut } from "@/apis/user"
+import { signOut } from "@/api/user"
 import NewUserForm from "./components/NewUserForm.vue"
 </script>
 <template>

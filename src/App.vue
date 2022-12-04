@@ -27,4 +27,8 @@ footer {
         --el-card-padding: 3vw;
     }
 }
+
+.el-message{
+    position: absolute;
+}
 </style>

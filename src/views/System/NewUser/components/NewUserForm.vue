@@ -26,7 +26,7 @@
 
 <script setup>
 import { reactive } from "vue"
-import { signUp } from "@/apis/user"
+import { signUp } from "@/api/user"
 
 const form = reactive({
     firstName: "",

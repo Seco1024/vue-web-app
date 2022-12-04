@@ -8,7 +8,6 @@
       </el-col>
     </el-row>
 </template>
-
 <script setup>
 import FloatCard from "@/components/FloatCard.vue"
 import MainTable from "./MainTable.vue"

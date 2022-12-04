@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router"
 import { getIdTokenPromise } from "@/firebase"
-import { getUserProfile } from "@/apis/user"
+import { getUserProfile } from "@/api/user"
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -74,21 +74,9 @@ const router = createRouter({
                     ],
                 },
                 {
-                    path: "employee",
-                    name: "員工",
-                    component: () => import("@/views/System/Employee/IndexFrame.vue"),
-                    children: [
-                        {
-                            path: "",
-                            name: "員工列表",
-                            component: () => import("@/views/System/Employee/EmployeePage.vue"),
-                        },
-                        {
-                            path: "schedule",
-                            name: "排班列表",
-                            component: () => import("@/views/System/Employee/SchedulePage.vue"),
-                        },
-                    ],
+                    path: "staff",
+                    name: "人員",
+                    component: () => import("@/views/System/Staff/PageIndex.vue")
                 },
                 {
                     path: "customer",

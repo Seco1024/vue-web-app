@@ -1,6 +1,6 @@
 <script setup>
 import CeranaLogo from "@/components/icons/CeranaLogo.vue"
-import { signIn } from "@/apis/user"
+import { signIn } from "@/api/user"
 </script>
 
 <template>

@@ -9,7 +9,7 @@
 
 <script setup>
 import { onMounted, ref } from "vue"
-import { getMaterialList } from "@/apis/material"
+import { getMaterialList } from "@/api/material"
 
 const state = ref("")
 const materials = ref([])

@@ -21,7 +21,7 @@
                 <el-icon><i-ep-list /></el-icon>
                 <template #title>銷售記錄</template>
             </el-menu-item>
-            <el-menu-item index="/system/employee">
+            <el-menu-item index="/system/staff">
                 <el-icon><i-ep-postcard /></el-icon>
                 <template #title>
                     <span>員工</span>
@@ -76,7 +76,7 @@ const isCollapse = computed(() => store.isCollapse)
     height: 100%;
     // background-color: #001529;
     padding: 20px 20px 0px 20px;
-    overflow: scroll;
+    // overflow: scroll;
     .el-menu {
         border-right: none;
         border-radius: 10px;

@@ -14,7 +14,7 @@ console.log(props.margin)
     </el-card>
 </template>
 
-<style scoped lang="less">
+<style lang="scss" scoped>
 .wrapper {
     // margin: 1% 2vw;
     height: 95%;
@@ -28,8 +28,5 @@ console.log(props.margin)
 }
 .mr-0 {
     margin-right: 0px !important;
-}
-:deep .el-card__body > * {
-    margin-bottom: 1vh;
 }
 </style>

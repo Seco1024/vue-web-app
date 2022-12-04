@@ -1,13 +1,13 @@
 <template>
-    <el-button @click="handleAdd" :icon="Plus">新增員工</el-button>
-    <el-table :data="tableData" max-height="75vh" size="large">
+    <el-button type="primary" size="large" @click="handleAdd" :icon="Plus" style="margin-bottom: 20px">新增員工</el-button>
+    <el-table :data="tableData" v-loading="loading" max-height="75vh" size="large">
         <el-table-column label="姓名" prop="name" />
         <el-table-column label="電話號碼" prop="phoneNumber" />
         <el-table-column label="電子郵件" prop="email" />
         <el-table-column label="" width="140">
             <template #default="scope">
                 <el-button size="small" @click="handleEdit(scope.$index, scope.row)">編輯</el-button>
-                <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row.name)">刪除</el-button>
+                <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row.sid)">刪除</el-button>
             </template>
         </el-table-column>
     </el-table>
@@ -28,44 +28,69 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue"
-import EmployeeForm from "./EmployeeForm.vue"
+import EmployeeForm from "./StaffForm.vue"
+import { getStaffList, addStaff, updateStaff, deleteStaff } from "@/api/staff"
+
+import { ref, reactive, onMounted } from "vue"
 import { Plus } from "@element-plus/icons-vue"
 
 const openEdit = ref(false)
 const openAdd = ref(false)
 const form = reactive({
+    sid: "",
     name: "",
     phoneNumber: "",
     email: "",
 })
+const loading = ref(false)
 
 const handleAdd = () => {
     openAdd.value = true
 }
 
 const handleEdit = (index, row) => {
-    const { name, phoneNumber, email } = row
+    const { sid, name, phoneNumber, email } = row
     console.log(index, row)
 
+    form.sid = sid
     form.name = name
     form.email = email
     form.phoneNumber = phoneNumber
     openEdit.value = true
 }
 
-const handleDelete = (index, name) => {
-    console.log(index, name)
+const handleDelete = async (index, sid) => {
+    loading.value = true
+
+    const resp = await deleteStaff(sid)
+    console.log(resp)
+
+    tableData.value = await getStaffList()
+    loading.value = false
 }
 
-const confirmEdit = () => {
-    console.log(form)
+const confirmEdit = async () => {
+    loading.value = true
     openEdit.value = false
+
+    const resp = await updateStaff(form)
+    console.log(resp)
+
+    tableData.value = await getStaffList()
+
+    loading.value = false
 }
 
-const confirmAdd = () => {
-    console.log(form)
+const confirmAdd = async () => {
+    loading.value = true
     openAdd.value = false
+
+    const resp = await addStaff(form)
+    console.log(resp)
+
+    tableData.value = await getStaffList()
+
+    loading.value = false
 }
 
 const cancelEdit = () => {
@@ -78,34 +103,14 @@ const cancelAdd = () => {
 
 const tableData = ref([
     {
+        sid: "asdas",
         name: "邱品硯",
         phoneNumber: "0912345678",
         email: "py@gmail.com",
-    },
-    {
-        name: "邱品硯",
-        phoneNumber: "0912345678",
-        email: "py@gmail.com",
-    },
-    {
-        name: "邱品硯",
-        phoneNumber: "0912345678",
-        email: "py@gmail.com",
-    },
-    {
-        name: "邱品硯",
-        phoneNumber: "0912345678",
-        email: "py@gmail.com",
-    },
-    {
-        name: "邱品硯",
-        phoneNumber: "0912345678",
-        email: "py@gmail.com",
-    },
-    {
-        name: "邱品硯",
-        phoneNumber: "0912345678",
-        email: "py@gmail.com",
-    },
+    }
 ])
+
+onMounted(async () => {
+    tableData.value = await getStaffList()
+})
 </script>
