@@ -12,5 +12,5 @@
 </template>
 
 <script setup>
-import { signOut } from "@/apis/user"
+import { signOut } from "@/api/user"
 </script>

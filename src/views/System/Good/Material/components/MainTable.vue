@@ -15,7 +15,7 @@
 
 <script setup>
 import { ref, onMounted } from "vue"
-import { getUserMaterialList } from "@/apis/material"
+import { getUserMaterialList } from "@/api/material"
 
 const tableData = ref([])
 

@@ -1,5 +1,5 @@
 <script setup>
-import { signIn } from "@/apis/user"
+import { signIn } from "@/api/user"
 </script>
 <template>
     <div class="home-hero">
