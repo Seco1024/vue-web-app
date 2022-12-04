@@ -29,12 +29,12 @@
                 <el-icon><i-ep-dataAnalysis /></el-icon>
                 <template #title>統計資料</template>
             </el-menu-item>
-            <el-sub-menu index="employee" disabled>
+            <el-sub-menu index="employee">
                 <template #title
                     ><el-icon><i-ep-postcard /></el-icon>
                     <span>員工</span>
                 </template>
-                <el-menu-item index="/system/employee" disabled>員工表</el-menu-item>
+                <el-menu-item index="/system/employee">員工表</el-menu-item>
                 <el-menu-item index="/system/employee/schedule" disabled>排班表</el-menu-item>
             </el-sub-menu>
             <el-sub-menu index="customer" disabled>
