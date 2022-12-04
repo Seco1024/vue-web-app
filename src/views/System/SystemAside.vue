@@ -6,38 +6,33 @@
                 <span v-if="!isCollapse" class="title">CeranaPOS</span>
             </div>
             <el-menu-item index="/system">
-                <el-icon><i-ep-shop /></el-icon>
+                <el-icon><i-ep-money /></el-icon>
                 <template #title>結帳介面</template>
             </el-menu-item>
-            <el-sub-menu index="good">
+            <el-menu-item index="/system/product">
+                <el-icon><i-ep-handbag /></el-icon>
+                <template #title>產品管理</template>
+            </el-menu-item>
+            <!-- <el-menu-item index="/system/good">
+                <el-icon><i-ep-box /></el-icon>
+                <template #title>成本管理</template>
+            </el-menu-item> -->
+            <el-menu-item index="/system/record/product">
+                <el-icon><i-ep-list /></el-icon>
+                <template #title>銷售記錄</template>
+            </el-menu-item>
+            <el-menu-item index="/system/employee">
+                <el-icon><i-ep-postcard /></el-icon>
                 <template #title>
-                    <el-icon><i-ep-box /></el-icon>
-                    <span>存貨</span>
+                    <span>員工</span>
                 </template>
-                <el-menu-item index="/system/good/product">商品存貨</el-menu-item>
-                <el-menu-item index="/system/good/material">材料存貨</el-menu-item>
-            </el-sub-menu>
-            <el-sub-menu index="record">
-                <template #title>
-                    <el-icon><i-ep-list /></el-icon>
-                    <span>記錄</span>
-                </template>
-                <el-menu-item index="/system/record/product">銷售記錄</el-menu-item>
-                <el-menu-item index="/system/record/material">材料記錄</el-menu-item>
-            </el-sub-menu>
+            </el-menu-item>
             <el-menu-item>
                 <el-icon><i-ep-dataAnalysis /></el-icon>
                 <template #title>統計資料</template>
             </el-menu-item>
-            <el-sub-menu index="employee" disabled>
-                <template #title
-                    ><el-icon><i-ep-postcard /></el-icon>
-                    <span>員工</span>
-                </template>
-                <el-menu-item index="/system/employee" disabled>員工表</el-menu-item>
-                <el-menu-item index="/system/employee/schedule" disabled>排班表</el-menu-item>
-            </el-sub-menu>
-            <el-sub-menu index="customer" disabled>
+            <!-- <el-menu-item index="/system/employee/schedule" disabled>排班表</el-menu-item> -->
+            <!-- <el-sub-menu index="customer" disabled>
                 <template #title
                     ><el-icon><i-ep-postcard /></el-icon>
                     <span>客戶</span>
@@ -48,7 +43,7 @@
             <el-menu-item disabled>
                 <el-icon><i-ep-firstAidKit /></el-icon>
                 <template #title><span>擴充功能</span></template>
-            </el-menu-item>
+            </el-menu-item> -->
         </el-menu>
     </div>
 </template>
