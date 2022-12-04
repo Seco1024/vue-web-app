@@ -35,6 +35,11 @@ const router = createRouter({
                     component: () => import("@/views/System/Cash/PageIndex.vue"),
                 },
                 {
+                    path: "product",
+                    name: "商品管理",
+                    component: () => import("@/views/System/Product/PageIndex.vue"),
+                },
+                {
                     path: "good",
                     name: "存貨管理",
                     component: () => import("@/views/System/Good/PageIndex.vue"),

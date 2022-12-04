@@ -4,11 +4,16 @@ import MainTable from "./components/MainTable.vue"
 </script>
 
 <template>
-    <el-row class="wrapper">
-        <el-col :md="20" :xs="24">
-            <FloatCard margin="ml-0">
-                <MainTable></MainTable>
-            </FloatCard>
-        </el-col>
-    </el-row>
+    <div class="wrap">
+        <FloatCard margin="ml-0">
+            <MainTable></MainTable>
+        </FloatCard>
+    </div>
 </template>
+
+<style lang="scss" scoped>
+.wrap {
+    width: 100%;
+    max-width: 700px;
+}
+</style>
