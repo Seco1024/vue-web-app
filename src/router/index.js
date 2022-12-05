@@ -1,110 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router"
 import { getIdTokenPromise } from "@/firebase"
-import { getUserProfile } from "@/apis/user"
+import { getUserProfile } from "@/api/user"
+import { routes } from "./route"
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
-    routes: [
-        {
-            path: "/",
-            name: "landing",
-            component: () => import("@/views/Landing/LandingView.vue"),
-            meta: {
-                requiresGuest: true,
-            },
-        },
-        {
-            path: "/new-user-registration",
-            name: "new-user-registration",
-            component: () => import("@/views/System/NewUser/PageIndex.vue"),
-            meta: {
-                requiresAuth: true,
-            },
-        },
-        {
-            path: "/system",
-            name: "system",
-            component: () => import("@/views/System/PageIndex.vue"),
-            meta: {
-                requiresAuth: true,
-            },
-            children: [
-                {
-                    path: "",
-                    name: "結帳介面",
-                    component: () => import("@/views/System/Cash/PageIndex.vue"),
-                },
-                {
-                    path: "good",
-                    name: "存貨管理",
-                    component: () => import("@/views/System/Good/PageIndex.vue"),
-                    children: [
-                        {
-                            path: "product",
-                            name: "商品清單",
-                            component: () => import("@/views/System/Good/Product/PageIndex.vue"),
-                        },
-                        {
-                            path: "material",
-                            name: "材料清單",
-                            component: () => import("@/views/System/Good/Material/PageIndex.vue"),
-                        },
-                    ],
-                },
-                {
-                    path: "record",
-                    name: "紀錄",
-                    component: () => import("@/views/System/Record/PageIndex.vue"),
-                    children: [
-                        {
-                            path: "product",
-                            name: "產品紀錄",
-                            component: () => import("@/views/System/Record/Product/PageIndex.vue"),
-                        },
-                        {
-                            path: "material",
-                            name: "材料紀錄",
-                            component: () => import("@/views/System/Record/Material/PageIndex.vue"),
-                        },
-                    ],
-                },
-                {
-                    path: "employee",
-                    name: "員工",
-                    component: () => import("@/views/System/Employee/IndexFrame.vue"),
-                    children: [
-                        {
-                            path: "",
-                            name: "員工列表",
-                            component: () => import("@/views/System/Employee/EmployeePage.vue"),
-                        },
-                        {
-                            path: "schedule",
-                            name: "排班列表",
-                            component: () => import("@/views/System/Employee/SchedulePage.vue"),
-                        },
-                    ],
-                },
-                {
-                    path: "customer",
-                    name: "客戶",
-                    component: () => import("@/views/System/Customer/IndexFrame.vue"),
-                    children: [
-                        {
-                            path: "",
-                            name: "客戶列表",
-                            component: () => import("@/views/System/Customer/CustomerPage.vue"),
-                        },
-                        {
-                            path: "discount",
-                            name: "折扣列表",
-                            component: () => import("@/views/System/Customer/DiscountPage.vue"),
-                        },
-                    ],
-                },
-            ],
-        },
-    ],
+    routes: routes,
 })
 
 router.beforeEach(async (to, from, next) => {
