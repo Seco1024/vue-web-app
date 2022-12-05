@@ -111,6 +111,8 @@ const tableData = ref([
 ])
 
 onMounted(async () => {
+    loading.value = true
     tableData.value = await getStaffList()
+    loading.value = false
 })
 </script>
