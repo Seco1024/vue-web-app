@@ -1,33 +1,34 @@
 import axios from "axios"
-import { getIdTokenPromise } from "../firebase"
 import { ElMessage } from "element-plus"
 
-export const getStaffList = async () => {
+import { getIdTokenPromise } from "../firebase"
+
+export const getProductList = async () => {
     try {
         const idToken = await getIdTokenPromise()
         if (!idToken) {
             return null
         }
 
-        const url = `${import.meta.env.VITE_API_URL}/api/staff`
+        const url = `${import.meta.env.VITE_API_URL}/api/product`
         const response = await axios.get(url, {
             headers: {
                 Authorization: `Bearer ${idToken}`,
             },
         })
-        console.log("[getStaffList]response:", response)
+        console.log("[getProductList]response:", response)
 
         if (!response.data.success) {
             ElMessage({
                 type: "error",
-                message: "取得人員列表失敗",
+                message: "取得產品列表失敗",
                 showClose: true,
             })
 
             return null
         }
 
-        return response.data.staffList
+        return response.data.productList
     } catch (error) {
         // ElMessage({
         //     type: "error",
@@ -38,11 +39,11 @@ export const getStaffList = async () => {
     }
 }
 
-export const addStaff = async ({ name, phoneNumber, email }) => {
-    const staff = {
+export const addProduct = async ({ name, amount, price }) => {
+    const product = {
         name,
-        phoneNumber,
-        email,
+        amount,
+        price,
     }
 
     try {
@@ -51,48 +52,40 @@ export const addStaff = async ({ name, phoneNumber, email }) => {
             return null
         }
 
-        const url = `${import.meta.env.VITE_API_URL}/api/staff`
-        const response = await axios.post(url, staff, {
+        const url = `${import.meta.env.VITE_API_URL}/api/product`
+        const response = await axios.post(url, product, {
             headers: {
                 Authorization: `Bearer ${idToken}`,
             },
         })
-        console.log("[addStaff]response:", response)
+        console.log("[addProduct]response:", response)
 
         if (!response.data.success) {
-            console.log("error:", response.data.message)
-
             ElMessage({
                 type: "error",
-                message: "新增人員失敗",
+                message: "新增產品失敗",
                 showClose: true,
             })
 
             return null
         }
 
-        ElMessage({
-            type: "success",
-            message: "新增人員成功",
-            showClose: true,
-        })
-
-        return response.data.staff
+        return response.data.product
     } catch (error) {
         ElMessage({
             type: "error",
             message: "未知錯誤",
             showClose: true,
         })
+        console.log("error:", error)
     }
 }
 
-export const updateStaff = async ({ sid, name, email, password }) => {
-    const staff = {
-        sid,
+export const updateProduct = async ({ pid, name, type, price }) => {
+    const product = {
         name,
-        email,
-        password,
+        type,
+        price,
     }
 
     try {
@@ -101,76 +94,67 @@ export const updateStaff = async ({ sid, name, email, password }) => {
             return null
         }
 
-        const url = `${import.meta.env.VITE_API_URL}/api/staff`
-        const response = await axios.put(url, staff, {
+        const url = `${import.meta.env.VITE_API_URL}/api/product/${pid}`
+        const response = await axios.put(url, product, {
             headers: {
                 Authorization: `Bearer ${idToken}`,
             },
         })
-        console.log("[updateStaff]response:", response)
+        console.log("[updateProduct]response:", response)
 
         if (!response.data.success) {
             ElMessage({
                 type: "error",
-                message: "更新人員失敗",
+                message: "更新產品失敗",
                 showClose: true,
             })
+
             return null
         }
 
-        ElMessage({
-            type: "success",
-            message: "更新人員成功",
-            showClose: true,
-        })
-
-        return response.data.staff
+        return response.data.product
     } catch (error) {
         ElMessage({
             type: "error",
             message: "未知錯誤",
             showClose: true,
         })
+        console.log("error:", error)
     }
 }
 
-export const deleteStaff = async (sid) => {
+export const deleteProduct = async (pid) => {
     try {
         const idToken = await getIdTokenPromise()
         if (!idToken) {
             return null
         }
 
-        // const url = `${import.meta.env.VITE_API_URL}/api/staff/${sid}`
-        const url = `${import.meta.env.VITE_API_URL}/api/staff?sid=${sid}`
+        const url = `${import.meta.env.VITE_API_URL}/api/product/${pid}`
         const response = await axios.delete(url, {
             headers: {
                 Authorization: `Bearer ${idToken}`,
             },
         })
-        console.log("[deleteStaff]response:", response)
-
+        console.log("[deleteProduct]response:", response)
+        
         if (!response.data.success) {
             ElMessage({
                 type: "error",
-                message: "刪除人員失敗",
+                message: "刪除產品失敗",
                 showClose: true,
             })
+
             return null
         }
-
-        ElMessage({
-            type: "success",
-            message: "刪除人員成功",
-            showClose: true,
-        })
-
-        return response.data
+        
+        return response.data.product
     } catch (error) {
         ElMessage({
             type: "error",
             message: "未知錯誤",
             showClose: true,
         })
+        console.log("error:", error)
     }
 }
