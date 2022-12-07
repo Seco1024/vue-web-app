@@ -1,10 +1,16 @@
-<script setup></script>
+<script setup>
+import zhTw from "element-plus/dist/locale/zh-tw.mjs"
+
+const locale = ref(zhTw)
+</script>
 
 <template>
-    <router-view v-slot="{ Component }" v-loading.fullscreen.lock>
-        <component :is="Component" />
-    </router-view>
-    <AppFooter><a href="https://github.com/CeranaPOS" target="_blank">Cerana Team</a> from NCCU</AppFooter>
+    <el-config-provider :locale="locale">
+        <router-view v-slot="{ Component }" v-loading.fullscreen.lock>
+            <component :is="Component" />
+        </router-view>
+        <AppFooter><a href="https://github.com/CeranaPOS" target="_blank">Cerana Team</a> from NCCU</AppFooter>
+    </el-config-provider>
 </template>
 
 <style>
@@ -17,7 +23,7 @@
     }
 }
 
-.el-message{
+.el-message {
     position: absolute;
 }
 </style>
