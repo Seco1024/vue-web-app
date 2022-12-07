@@ -47,12 +47,12 @@ export const routes = [
                 icon: 'Postcard',
                 component: () => import("@/views/staff")
             },
-            {
-                path: "report",
-                name: "統計資料",
-                icon: 'DataAnalysis',
-                component: () => import("@/views/dashboard")
-            },
+            // {
+            //     path: "report",
+            //     name: "統計資料",
+            //     icon: 'DataAnalysis',
+            //     component: () => import("@/views/dashboard")
+            // },
         ],
     },
 ]

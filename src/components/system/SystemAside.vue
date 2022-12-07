@@ -37,7 +37,7 @@ const sysRoutes = computed(() => {
 
 <style scoped lang="less">
 @media (max-width: 512px) {
-    :deep .el-menu--collapse {
+    :deep(.el-menu--collapse){
         display: none;
     }
     .nav-menu {
