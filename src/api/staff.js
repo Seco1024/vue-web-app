@@ -142,18 +142,12 @@ export const deleteStaff = async (sid) => {
         }
 
         // const url = `${import.meta.env.VITE_API_URL}/api/staff/${sid}`
-        const url = `${import.meta.env.VITE_API_URL}/api/staff`
-        const response = await axios.delete(
-            url,
-            {
-                headers: {
-                    Authorization: `Bearer ${idToken}`,
-                },
-                data: {
-                    sid,
-                },
-            }
-        )
+        const url = `${import.meta.env.VITE_API_URL}/api/staff?sid=${sid}`
+        const response = await axios.delete(url, {
+            headers: {
+                Authorization: `Bearer ${idToken}`,
+            },
+        })
         console.log("[deleteStaff]response:", response)
 
         if (!response.data.success) {
