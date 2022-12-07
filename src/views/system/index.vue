@@ -2,8 +2,6 @@
 import SystemLayout from "@/layouts/SystemLayout.vue"
 import SystemAside from "@/components/system/SystemAside.vue"
 import SystemHeader from "@/components/system/SystemHeader.vue"
-
-import { ref } from "vue"
 </script>
 
 <template>
