@@ -1,8 +1,6 @@
 <script setup>
 import FloatCard from "@/components/ui/FloatCard.vue"
 import MainTable from "./MainTable.vue"
-import ProductForm from "./ProductForm.vue"
-// import TypeTags from "@/components/product/TypeTags.vue"
 </script>
 
 <template>

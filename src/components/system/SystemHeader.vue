@@ -1,7 +1,7 @@
 <template>
     <div class="header-wrapper">
         <div class="bar">
-            <el-button class="aside-toggle" @click="handleToggle" text>
+            <el-button class="aside-toggle" @click="toggle" text>
                 <el-icon :size="25" v-if="isCollapse"><i-ep-Expand /></el-icon>
                 <el-icon :size="25" v-if="!isCollapse"><i-ep-Fold /></el-icon>
             </el-button>
@@ -13,21 +13,12 @@
 </template>
 
 <script setup>
-import { computed } from "vue"
 import { useRoute } from "vue-router"
-import { useSystemStore } from "@/stores/system"
+import { useCollapse } from "@/composables/useCollapse";
 
 const route = useRoute()
-const store = useSystemStore()
 
-const isCollapse = computed(() => store.isCollapse)
-const handleToggle = () => {
-    if (isCollapse.value) {
-        store.expand()
-    } else {
-        store.collapse()
-    }
-}
+const { isCollapse, toggle } = useCollapse()
 </script>
 
 <style scoped>

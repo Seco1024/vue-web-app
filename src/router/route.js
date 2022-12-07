@@ -36,10 +36,10 @@ export const routes = [
                 component: () => import("@/views/product")
             },
             {
-                path: "record",
+                path: "order",
                 name: "交易紀錄",
                 icon: 'List',
-                component: () => import("@/views/record")
+                component: () => import("@/views/order")
             },
             {
                 path: "staff",
