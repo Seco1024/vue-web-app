@@ -1,8 +1,8 @@
 <script setup>
 import { onBeforeMount } from "vue"
-import HomeLayout from "./components/HomeLayout.vue"
-import AboutLayout from "./components/AboutLayout.vue"
-import LandingMenu from "./components/LandingMenu.vue"
+import HomeLayout from "./HomeLayout.vue"
+import AboutLayout from "./AboutLayout.vue"
+import LandingMenu from "./LandingMenu.vue"
 
 import { useDark } from "@vueuse/core"
 

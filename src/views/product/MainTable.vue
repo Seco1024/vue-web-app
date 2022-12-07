@@ -1,5 +1,5 @@
 <template>
-    <el-table :data="tableData" stripe max-height="75vh" size="large" @row-click="openEdit">
+    <el-table v-loading="loading" :data="tableData" stripe max-height="75vh" size="large" @row-click="openEdit" empty-text="無資料">
         <el-table-column prop="name" label="名稱" />
         <el-table-column prop="type" label="種類">
             <template #default="scope">
@@ -34,7 +34,8 @@
 
 <script setup>
 import ProductForm from "./ProductForm.vue"
-import { ref, reactive } from "vue"
+import { getProductList } from "@/api/product"
+import { ref, reactive, onMounted } from "vue"
 
 const form = reactive({
     name: "",
@@ -87,16 +88,11 @@ const cancel = () => {
     openAdd.value = false
 }
 
-const tableData = [
-    {
-        name: "asdads",
-        type: "asdasd",
-        price: 100,
-    },
-    {
-        name: "asdads",
-        type: "asdasd",
-        price: 100,
-    }
-]
+const tableData = ref([])
+const loading = ref(false)
+onMounted(async () => {
+    loading.value = true
+    tableData.value = await getProductList()
+    loading.value = false
+})
 </script>

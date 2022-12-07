@@ -1,5 +1,5 @@
 <template>
-    <el-table :data="tableData" style="width: 100%" max-height="75vh">
+    <el-table :data="tableData" style="width: 100%" max-height="75vh" empty-text="無資料">
         <el-table-column type="expand">
             <template #default="scope">
                 <el-row class="note">

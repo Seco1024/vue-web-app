@@ -1,8 +1,8 @@
 <template>
     <el-button type="primary" size="large" @click="handleAdd" :icon="Plus" style="margin-bottom: 20px">新增員工</el-button>
-    <el-table :data="tableData" v-loading="loading" max-height="75vh" size="large">
-        <el-table-column label="姓名" prop="name" />
-        <el-table-column label="電話號碼" prop="phoneNumber" />
+    <el-table :data="tableData" v-loading="loading" max-height="75vh" size="large" empty-text="無資料">
+        <el-table-column label="姓名" prop="name" width="80" />
+        <el-table-column label="電話號碼" prop="phoneNumber" width="120" />
         <el-table-column label="電子郵件" prop="email" />
         <el-table-column label="" width="140">
             <template #default="scope">

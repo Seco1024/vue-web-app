@@ -1,6 +1,6 @@
 <template>
     <el-row class="wrapper">
-      <el-col :md="16" :xs="24">
+      <el-col :xs="24">
         <FloatCard margin="ml-0">
             <MainTable>
             </MainTable>
@@ -12,3 +12,8 @@
 import FloatCard from "@/components/ui/FloatCard.vue"
 import MainTable from "./MainTable.vue"
 </script>
+<style lang="scss" scoped>
+.wrapper {
+    max-width: 600px;
+}
+</style>
