@@ -8,7 +8,7 @@
             <el-menu-item v-for="route in sysRoutes[0].children" :key="('/system/' + route.path)" :index="('/system/' + route.path)">
                 <el-icon v-if="route.path === ''"><Money /></el-icon>
                 <el-icon v-if="route.path === 'product'"><ShoppingBag /></el-icon>
-                <el-icon v-if="route.path === 'record'"><List /></el-icon>
+                <el-icon v-if="(route.path === 'order')"><List /></el-icon>
                 <el-icon v-if="route.path === 'staff'"><Postcard /></el-icon>
                 <el-icon v-if="route.path === 'report'"><DataAnalysis /></el-icon>
                 <template #title>{{ route.name }}</template>
@@ -24,11 +24,9 @@ import { computed } from "vue"
 import { useRouter } from "vue-router"
 
 import CeranaLogo from "@/components/icons/CeranaLogo.vue"
-import { useSystemStore } from "@/stores/system"
+import { useCollapse } from "@/composables/useCollapse";
 
-const store = useSystemStore()
-
-const isCollapse = computed(() => store.isCollapse)
+const { isCollapse } = useCollapse()
 
 const router = useRouter()
 const sysRoutes = computed(() => {
@@ -39,7 +37,7 @@ const sysRoutes = computed(() => {
 
 <style scoped lang="less">
 @media (max-width: 512px) {
-    :deep .el-menu--collapse {
+    :deep(.el-menu--collapse){
         display: none;
     }
     .nav-menu {

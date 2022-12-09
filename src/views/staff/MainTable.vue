@@ -1,8 +1,8 @@
 <template>
     <el-button type="primary" size="large" @click="handleAdd" :icon="Plus" style="margin-bottom: 20px">新增員工</el-button>
-    <el-table :data="tableData" v-loading="loading" max-height="75vh" size="large">
-        <el-table-column label="姓名" prop="name" />
-        <el-table-column label="電話號碼" prop="phoneNumber" />
+    <el-table :data="tableData" v-loading="loading" max-height="75vh" size="large" empty-text="無資料">
+        <el-table-column label="姓名" prop="name" width="80" />
+        <el-table-column label="電話號碼" prop="phoneNumber" width="120" />
         <el-table-column label="電子郵件" prop="email" />
         <el-table-column label="" width="140">
             <template #default="scope">
@@ -14,15 +14,15 @@
     <RightDrawer title="編輯員工" v-model="openEdit">
         <EmployeeForm :form="form" />
         <template #footer>
-            <el-button @click.prevent="cancelEdit">取消</el-button>
-            <el-button type="primary" @click.prevent="confirmEdit">確認編輯</el-button>
+            <el-button size="large" @click.prevent="cancelEdit">取消</el-button>
+            <el-button size="large" type="primary" @click.prevent="confirmEdit">確認編輯</el-button>
         </template>
     </RightDrawer>
     <RightDrawer title="新增員工" v-model="openAdd">
         <EmployeeForm :form="form" />
         <template #footer>
-            <el-button @click.prevent="cancelAdd">取消</el-button>
-            <el-button type="primary" @click.prevent="confirmAdd">確認新增</el-button>
+            <el-button size="large" @click.prevent="cancelAdd">取消</el-button>
+            <el-button size="large" type="primary" @click.prevent="confirmAdd">確認新增</el-button>
         </template>
     </RightDrawer>
 </template>

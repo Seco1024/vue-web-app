@@ -1,5 +1,6 @@
 <template>
-    <el-table :data="tableData" stripe max-height="75vh" size="large" @row-click="openEdit">
+    <el-button size="large" type="primary" @click="handleAdd">+ 新增產品</el-button>
+    <el-table v-loading="loading" :data="products" stripe max-height="75vh" size="large" @row-click="openEdit" empty-text="無資料">
         <el-table-column prop="name" label="名稱" />
         <el-table-column prop="type" label="種類">
             <template #default="scope">
@@ -10,9 +11,9 @@
             <template #default="scope"> ${{ scope.row.price }} </template>
         </el-table-column>
         <el-table-column label="動作" width="140">
-            <template #default="scope">
-                <el-button size="small" @click="handleEdit(scope.$index, scope.row)">編輯</el-button>
-                <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">刪除</el-button>
+            <template #default="{ $index, row }">
+                <el-button size="small" @click="handleEdit($index, row)">編輯</el-button>
+                <el-button size="small" type="danger" @click="deleteProduct(row.pid)">刪除</el-button>
             </template>
         </el-table-column>
     </el-table>
@@ -22,31 +23,41 @@
             <el-button size="large" @click.prevent="cancel">取消</el-button>
             <el-button size="large" type="primary" @click.prevent="confirmEdit">確認編輯</el-button>
         </template>
+        <!-- {{ form }} -->
     </RightDrawer>
     <RightDrawer title="新增商品" v-model="openAdd">
         <ProductForm :form="form" />
         <template #footer>
-            <el-button @click.prevent="cancel">取消</el-button>
-            <el-button type="primary" @click.prevent="confirmAdd">確認新增</el-button>
+            <el-button size="large" @click.prevent="cancel">取消</el-button>
+            <el-button size="large" type="primary" @click.prevent="confirmAdd">確認新增</el-button>
         </template>
+        <!-- {{ form }} -->
     </RightDrawer>
 </template>
 
 <script setup>
 import ProductForm from "./ProductForm.vue"
-import { ref, reactive } from "vue"
+import { useFetchProduct } from "@/composables/useFetchProduct"
+
+import { ref, reactive, onMounted } from "vue"
+
+import { ElMessage } from "element-plus";
+
+const { products, loading, fetchProduct, addProduct, deleteProduct, updateProduct, responseMessage } = useFetchProduct()
 
 const form = reactive({
+    pid: "",
     name: "",
     type: "",
-    price: "",
+    price: 0,
 })
 
 const openEdit = ref(false)
 
 const handleEdit = (index, row) => {
-    const { name, type, price, amount, materialList } = row
+    const { pid, name, type, price  } = row
 
+    form.pid = pid
     form.name = name
     form.type = type
     form.price = price
@@ -54,12 +65,11 @@ const handleEdit = (index, row) => {
     openEdit.value = true
 }
 
-const confirmEdit = () => {
-    const { name, type, price, amount, materialList } = form
-
-    console.log(name, type, price, amount, materialList)
-
+const confirmEdit = async () => {
     openEdit.value = false
+
+    await updateProduct(form)
+    ElMessage.success(responseMessage.value)
 }
 
 const openAdd = ref(false)
@@ -67,19 +77,19 @@ const openAdd = ref(false)
 const handleAdd = () => {
     openAdd.value = true
 
+    form.pid = ""
     form.name = ""
     form.type = ""
-    form.price = ""
+    form.price = 0
 
     openAdd.value = true
 }
 
-const confirmAdd = () => {
-    const { name, type, price } = form
-
-    console.log(name, type, price)
-
+const confirmAdd = async () => {
     openAdd.value = false
+
+    await addProduct(form)
+    ElMessage.success(responseMessage.value)
 }
 
 const cancel = () => {
@@ -87,16 +97,8 @@ const cancel = () => {
     openAdd.value = false
 }
 
-const tableData = [
-    {
-        name: "asdads",
-        type: "asdasd",
-        price: 100,
-    },
-    {
-        name: "asdads",
-        type: "asdasd",
-        price: 100,
-    }
-]
+onMounted(async () => {
+    await fetchProduct()
+    ElMessage.success(responseMessage.value)
+})
 </script>
