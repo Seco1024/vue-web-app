@@ -22,7 +22,7 @@
         <el-table-column label="動作" width="125">
             <template #default="{ $index, row }">
                 <el-button size="small" @click="handleEdit($index, row)"><i-ep-edit /></el-button>
-                <el-button size="small" type="danger" @click="deleteProduct(row.pid)"><i-ep-delete /></el-button>
+                <el-button size="small" type="danger" @click="confirmDelete(row.pid)"><i-ep-delete /></el-button>
             </template>
         </el-table-column>
     </el-table>
@@ -79,6 +79,7 @@ const confirmEdit = async () => {
 
     await updateProduct(form)
     ElMessage.success(responseMessage.value)
+    await fetchProduct()
 }
 
 const openAdd = ref(false)
@@ -99,11 +100,18 @@ const confirmAdd = async () => {
 
     await addProduct(form)
     ElMessage.success(responseMessage.value)
+    await fetchProduct()
 }
 
 const cancel = () => {
     openEdit.value = false
     openAdd.value = false
+}
+
+const confirmDelete = async (pid) => {
+    await deleteProduct(pid)
+    ElMessage.success(responseMessage.value)
+    await fetchProduct()
 }
 
 onMounted(async () => {
