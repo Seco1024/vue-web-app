@@ -16,14 +16,19 @@
                     <el-col :sm="10" :xs="24">
                         <p>負責人：{{ row.staffName }}</p>
                         <p>建立時間：{{ convertTimestamp(row.timestamp) }}</p>
-                        <p>總價：{{ row.totalPrice }}</p>
+                        <p>折扣：{{ row.discount }} 元</p>
+                        <p>總價：{{ row.totalPrice }} 元</p>
                         <p>備註：{{ row.note }}</p>
                     </el-col>
                     <el-col :md="14" :xs="24">
-                        <el-table :data="row.productList" stripe show-summary>
+                        <el-table :data="row.productList" stripe>
                             <el-table-column prop="productName" label="名稱" />
                             <el-table-column prop="amount" label="數量" />
-                            <el-table-column label="價錢">{{ productTotalPrice(row.productList) }}</el-table-column>
+                            <el-table-column label="價錢">
+                                <template #default="{ row }">
+                                    ${{ row.price * row.amount }}
+                                </template>
+                            </el-table-column>
                         </el-table>
                     </el-col>
                 </el-row>
@@ -70,9 +75,7 @@ import { useFetchOrder } from "@/composables/useFetchOrder"
 
 const { orders, fetchOrder, deleteOrder, loading } = useFetchOrder()
 
-const productTotalPrice = computed((productList) => {
-    return productList.amuont * productList.price
-})
+const productTotalPrice = computed((productList) => productList.amuont * productList.price)
 
 const filterTag = (value, row) => {
     console.log(row.tagList)
@@ -85,18 +88,10 @@ const convertTimestamp = (timestamp) => {
     const year = date.getFullYear()
     const month = date.getMonth() + 1
     const day = date.getDate()
-    const hour = date.getHours()
-    const minute = date.getMinutes()
-    const second = date.getSeconds()
-    if (minute < 10) {
-        minute = "0" + minute
-    }
-    if (hour < 10) {
-        hour = "0" + hour
-    }
-    if (second < 10) {
-        second = "0" + second
-    }
+    const hour = String(date.getHours()).padStart(2, "0")
+    const minute = String(date.getMinutes()).padStart(2, "0")
+    const second = String(date.getSeconds()).padStart(2, "0")
+
     return `${year}/${month}/${day} ${hour}:${minute}:${second}`
 }
 
@@ -162,3 +157,5 @@ const shortcuts = [
     margin-right: 3px;
 }
 </style>
+
+
