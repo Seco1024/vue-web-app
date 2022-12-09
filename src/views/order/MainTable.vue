@@ -15,7 +15,7 @@
                 <el-row class="note">
                     <el-col :sm="10" :xs="24">
                         <p>負責人：{{ row.staffName }}</p>
-                        <p>建立時間：{{ row.timestamp }}</p>
+                        <p>建立時間：{{ convertTimestamp(row.timestamp) }}</p>
                         <p>總價：{{ row.totalPrice }}</p>
                         <p>備註：{{ row.note }}</p>
                     </el-col>
@@ -23,7 +23,7 @@
                         <el-table :data="row.productList" stripe show-summary>
                             <el-table-column prop="productName" label="名稱" />
                             <el-table-column prop="amount" label="數量" />
-                            <el-table-column prop="price" label="價錢" />
+                            <el-table-column label="價錢">{{ productTotalPrice(row.productList) }}</el-table-column>
                         </el-table>
                     </el-col>
                 </el-row>
@@ -65,10 +65,14 @@
 <script setup>
 import { Delete } from "@element-plus/icons-vue"
 
-import { onMounted } from "vue"
+import { onMounted, computed } from "vue"
 import { useFetchOrder } from "@/composables/useFetchOrder"
 
 const { orders, fetchOrder, deleteOrder, loading } = useFetchOrder()
+
+const productTotalPrice = computed((productList) => {
+    return productList.amuont * productList.price
+})
 
 const filterTag = (value, row) => {
     console.log(row.tagList)
