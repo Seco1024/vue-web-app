@@ -88,6 +88,15 @@ const convertTimestamp = (timestamp) => {
     const hour = date.getHours()
     const minute = date.getMinutes()
     const second = date.getSeconds()
+    if (minute < 10) {
+        minute = "0" + minute
+    }
+    if (hour < 10) {
+        hour = "0" + hour
+    }
+    if (second < 10) {
+        second = "0" + second
+    }
     return `${year}/${month}/${day} ${hour}:${minute}:${second}`
 }
 
