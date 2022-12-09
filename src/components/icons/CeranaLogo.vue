@@ -1,3 +1,3 @@
 <template>
-    <img src="@/assets/icons/cerana-logo.png" alt="CeranaPOS" style="height: 36px" />
+    <img src="@/assets/icons/mask-icon.png" alt="CeranaPOS" style="height: 36px" />
 </template>
