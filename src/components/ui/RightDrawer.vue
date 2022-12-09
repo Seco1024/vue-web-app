@@ -1,6 +1,6 @@
 <template>
     <!-- {{ modelValue }} -->
-    <el-drawer :modelValue="modelValue" @close="modelValue === false" modal :close-on-click-modal="false" :title="title" direction="rtl" size="100">
+    <el-drawer :modelValue="modelValue" @close="modelValue === false" modal :close-on-click-modal="false" :title="title" direction="rtl">
         <slot></slot>
         <template #footer>
             <slot name="footer"></slot>
