@@ -27,6 +27,7 @@ defineProps({
 </script>
 <style lang="scss">
 .el-drawer {
+    width: 100% !important;
     max-width: 350px !important;
 }
 </style>
