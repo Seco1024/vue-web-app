@@ -23,7 +23,7 @@
             <el-button size="large" @click.prevent="cancel">取消</el-button>
             <el-button size="large" type="primary" @click.prevent="confirmEdit">確認編輯</el-button>
         </template>
-        {{ form }}
+        <!-- {{ form }} -->
     </RightDrawer>
     <RightDrawer title="新增商品" v-model="openAdd">
         <ProductForm :form="form" />
@@ -31,7 +31,7 @@
             <el-button size="large" @click.prevent="cancel">取消</el-button>
             <el-button size="large" type="primary" @click.prevent="confirmAdd">確認新增</el-button>
         </template>
-        {{ form }}
+        <!-- {{ form }} -->
     </RightDrawer>
 </template>
 
