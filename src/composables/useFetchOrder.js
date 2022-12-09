@@ -79,7 +79,7 @@ export const useFetchOrder = () => {
     const idToken = await getIdTokenPromise()
     requestState.value = REQUEST_IN_PROGRESS;
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/product/sell-order/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/product/sell-order/?orderId=${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

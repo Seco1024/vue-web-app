@@ -63,10 +63,10 @@
 </template>
 
 <script setup>
-import { Delete } from "@element-plus/icons-vue"
-
 import { onMounted } from "vue"
 import { useFetchOrder } from "@/composables/useFetchOrder"
+
+import { ElMessage } from "element-plus";
 
 const { orders, fetchOrder, deleteOrder, loading } = useFetchOrder()
 
@@ -92,8 +92,10 @@ onMounted(() => {
     console.log(orders.value)
 })
 
-const handleDelete = (orderId) => {
-    deleteOrder(orderId)
+const handleDelete = async (orderId) => {
+    await deleteOrder(orderId)
+    ElMessage.success("刪除成功")
+    fetchOrder(new Date().getTime(), 20)
 }
 
 const timeRange = ref([])
