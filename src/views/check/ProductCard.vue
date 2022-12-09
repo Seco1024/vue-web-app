@@ -1,6 +1,6 @@
 <template>
     <el-card @click="$emit('click')">
-        <h1>{{ detail.name }}</h1>
+        <h1>{{ detail.name.slice(0, 6) }}</h1>
         <h5>{{ detail.type }}</h5>
         <h1>${{ detail.price }}</h1>
     </el-card>
@@ -16,8 +16,7 @@ defineProps({
 </script>
 <style lang="scss" scoped>
 .el-card {
-    width: 150px;
-    height: 150px;
+    height: 15vh;
     cursor: pointer;
     &:active {
         background-color: #04aa6d;

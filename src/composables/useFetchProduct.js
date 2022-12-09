@@ -88,7 +88,7 @@ export const useFetchProduct = () => {
         const idToken = await getIdTokenPromise()
         requestState.value = REQUEST_IN_PROGRESS
         try {
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/product/${pid}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/product/?pid=${pid}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",

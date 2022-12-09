@@ -25,8 +25,8 @@ export default defineConfig({
             includeAssets: ["favicon.ico", "apple-touch-icon.png"],
             manifest: {
                 name: "Cerana Ledger",
-                short_name: "CLedger",
-                description: "CeranaLedger是一個簡潔、方便、快速的線上服務。在小市集擺攤或做一些短期買賣，卻發現市面上的進銷存系統卻很貴也沒必要客製化嗎？進貨、銷售、利潤管理、員工管理，只需要一台筆電或平板就可以輕鬆滿足您的需求！",
+                short_name: "Cerana Ledger",
+                description: "Cerana Ledger 是一個簡潔、方便、快速的線上服務。在小市集擺攤或做一些短期買賣，卻發現市面上的進銷存系統卻很貴也沒必要客製化嗎？進貨、銷售、利潤管理、員工管理，只需要一台筆電或平板就可以輕鬆滿足您的需求！",
                 theme_color: "#00bd7e",
                 icons: [
                     {

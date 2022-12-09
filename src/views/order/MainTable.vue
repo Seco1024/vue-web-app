@@ -61,17 +61,18 @@
         </el-table-column>
         <el-table-column label="操作" width="60">
             <template #default="scope">
-                <el-button type="danger" :icon="Delete" circle @click="handleDelete(scope.row.orderId)" />
+                <el-button type="danger" circle @click="handleDelete(scope.row.orderId)"><i-ep-delete /></el-button>
             </template>
         </el-table-column>
     </el-table>
 </template>
 
 <script setup>
-import { Delete } from "@element-plus/icons-vue"
-
 import { onMounted, computed } from "vue"
+
 import { useFetchOrder } from "@/composables/useFetchOrder"
+
+import { ElMessage } from "element-plus";
 
 const { orders, fetchOrder, deleteOrder, loading } = useFetchOrder()
 
@@ -100,8 +101,10 @@ onMounted(() => {
     console.log(orders.value)
 })
 
-const handleDelete = (orderId) => {
-    deleteOrder(orderId)
+const handleDelete = async (orderId) => {
+    await deleteOrder(orderId)
+    ElMessage.success("刪除成功")
+    fetchOrder(new Date().getTime(), 20)
 }
 
 const timeRange = ref([])
