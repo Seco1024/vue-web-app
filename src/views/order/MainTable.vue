@@ -56,7 +56,7 @@
         </el-table-column>
         <el-table-column label="操作" width="60">
             <template #default="scope">
-                <el-button type="danger" :icon="Delete" circle @click="handleDelete(scope.row.orderId)" />
+                <el-button type="danger" circle @click="handleDelete(scope.row.orderId)"><i-ep-delete /></el-button>
             </template>
         </el-table-column>
     </el-table>

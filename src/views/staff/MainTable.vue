@@ -4,10 +4,10 @@
         <el-table-column label="姓名" prop="name" width="80" />
         <el-table-column label="電話號碼" prop="phoneNumber" width="120" />
         <el-table-column label="電子郵件" prop="email" />
-        <el-table-column label="" width="140">
+        <el-table-column label="動作" width="125">
             <template #default="scope">
-                <el-button size="small" @click="handleEdit(scope.$index, scope.row)">編輯</el-button>
-                <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row.sid)">刪除</el-button>
+                <el-button size="small" @click="handleEdit(scope.$index, scope.row)"><i-ep-edit /></el-button>
+                <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row.sid)"><i-ep-delete /></el-button>
             </template>
         </el-table-column>
     </el-table>
