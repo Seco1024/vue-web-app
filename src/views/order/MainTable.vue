@@ -15,7 +15,7 @@
                 <el-row class="note">
                     <el-col :sm="10" :xs="24">
                         <p>負責人：{{ row.staffName }}</p>
-                        <p>建立時間：{{ convertTimestamp(row.timestamp) }}</p>
+                        <p>建立時間：{{ row.timestamp }}</p>
                         <p>總價：{{ row.totalPrice }}</p>
                         <p>備註：{{ row.note }}</p>
                     </el-col>
@@ -23,7 +23,7 @@
                         <el-table :data="row.productList" stripe show-summary>
                             <el-table-column prop="productName" label="名稱" />
                             <el-table-column prop="amount" label="數量" />
-                            <el-table-column label="價錢">{{ productTotalPrice(row.productList) }}</el-table-column>
+                            <el-table-column prop="price" label="價錢" />
                         </el-table>
                     </el-col>
                 </el-row>
@@ -64,22 +64,14 @@
 
 <script setup>
 import { Delete } from "@element-plus/icons-vue"
-
-import { onMounted, computed } from "vue"
+import { onMounted } from "vue"
 import { useFetchOrder } from "@/composables/useFetchOrder"
-
 const { orders, fetchOrder, deleteOrder, loading } = useFetchOrder()
-
-const productTotalPrice = computed((productList) => {
-    return productList.amuont * productList.price
-})
-
 const filterTag = (value, row) => {
     console.log(row.tagList)
     console.log(row.tagList.some((tag) => tag.valueOf() === value))
     return row.tagList.some((tag) => tag.valueOf() === value)
 }
-
 const convertTimestamp = (timestamp) => {
     const date = new Date(timestamp)
     const year = date.getFullYear()
@@ -88,35 +80,21 @@ const convertTimestamp = (timestamp) => {
     const hour = date.getHours()
     const minute = date.getMinutes()
     const second = date.getSeconds()
-    if (minute < 10) {
-        minute = "0" + minute
-    }
-    if (hour < 10) {
-        hour = "0" + hour
-    }
-    if (second < 10) {
-        second = "0" + second
-    }
     return `${year}/${month}/${day} ${hour}:${minute}:${second}`
 }
-
 onMounted(() => {
     fetchOrder(new Date().getTime(), 20)
     console.log(orders.value)
 })
-
 const handleDelete = (orderId) => {
     deleteOrder(orderId)
 }
-
 const timeRange = ref([])
 const defaultTimeRange = ref([new Date() - 3600 * 1000 * 24 * 7, new Date()])
-
 const search = () => {
     console.log(timeRange.value)
     // fetchOrder(timeRange.value[0].getTime(), timeRange.value[1].getTime())
 }
-
 const shortcuts = [
     {
         text: "上週",
@@ -152,7 +130,6 @@ const shortcuts = [
 .note {
     width: 100%;
     padding-left: 3vw;
-
     :deep(> *) {
         padding: 5px;
     }
