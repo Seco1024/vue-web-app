@@ -1,12 +1,14 @@
 <template>
-    <el-space wrap  alignment="flex-start">
-        <div class="main">
+    <el-row>
+        <el-col :md="14">
             <slot name="main"></slot>
-        </div>
-        <el-card>
-            <slot name="list"></slot>
-        </el-card>
-    </el-space>
+        </el-col>
+        <el-col :md="10">
+            <el-card>
+                <slot name="list"></slot>
+            </el-card>
+        </el-col>
+    </el-row>
 </template>
 <style lang="scss" scoped>
 .main {

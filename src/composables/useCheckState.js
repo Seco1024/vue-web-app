@@ -45,6 +45,10 @@ export const useCheckState = () => {
         }
     }
 
+    const deleteProductFromOrderForm = (index) => {
+        orderForm.productList.splice(index, 1)
+    }
+
     const deleteAllProductFromOrderForm = () => {
         orderForm.productList = []
     }
@@ -83,6 +87,7 @@ export const useCheckState = () => {
         products,
         orderForm,
         addProductToOrderForm,
+        deleteProductFromOrderForm,
         deleteAllProductFromOrderForm,
         addOrder,
         loading,

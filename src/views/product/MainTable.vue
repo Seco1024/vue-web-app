@@ -1,19 +1,28 @@
 <template>
     <el-button size="large" type="primary" @click="handleAdd">+ 新增產品</el-button>
-    <el-table v-loading="loading" :data="products" stripe max-height="75vh" size="large" @row-click="openEdit" empty-text="無資料">
+    <el-table
+        v-loading="loading"
+        :data="products"
+        stripe
+        max-height="75vh"
+        size="large"
+        @row-click="openEdit"
+        empty-text="無資料"
+        style="width: 100%"
+    >
         <el-table-column prop="name" label="名稱" />
         <el-table-column prop="type" label="種類">
             <template #default="scope">
                 {{ scope.row.type }}
             </template>
         </el-table-column>
-        <el-table-column label="價錢">
+        <el-table-column label="價錢" width="65">
             <template #default="scope"> ${{ scope.row.price }} </template>
         </el-table-column>
-        <el-table-column label="動作" width="140">
+        <el-table-column label="動作" width="125">
             <template #default="{ $index, row }">
-                <el-button size="small" @click="handleEdit($index, row)">編輯</el-button>
-                <el-button size="small" type="danger" @click="deleteProduct(row.pid)">刪除</el-button>
+                <el-button size="small" @click="handleEdit($index, row)"><i-ep-edit /></el-button>
+                <el-button size="small" type="danger" @click="confirmDelete(row.pid)"><i-ep-delete /></el-button>
             </template>
         </el-table-column>
     </el-table>
@@ -41,7 +50,7 @@ import { useFetchProduct } from "@/composables/useFetchProduct"
 
 import { ref, reactive, onMounted } from "vue"
 
-import { ElMessage } from "element-plus";
+import { ElMessage } from "element-plus"
 
 const { products, loading, fetchProduct, addProduct, deleteProduct, updateProduct, responseMessage } = useFetchProduct()
 
@@ -55,7 +64,7 @@ const form = reactive({
 const openEdit = ref(false)
 
 const handleEdit = (index, row) => {
-    const { pid, name, type, price  } = row
+    const { pid, name, type, price } = row
 
     form.pid = pid
     form.name = name
@@ -70,6 +79,7 @@ const confirmEdit = async () => {
 
     await updateProduct(form)
     ElMessage.success(responseMessage.value)
+    await fetchProduct()
 }
 
 const openAdd = ref(false)
@@ -90,6 +100,7 @@ const confirmAdd = async () => {
 
     await addProduct(form)
     ElMessage.success(responseMessage.value)
+    await fetchProduct()
 }
 
 const cancel = () => {
@@ -97,8 +108,23 @@ const cancel = () => {
     openAdd.value = false
 }
 
+const confirmDelete = async (pid) => {
+    await deleteProduct(pid)
+    ElMessage.success(responseMessage.value)
+    await fetchProduct()
+}
+
 onMounted(async () => {
     await fetchProduct()
     ElMessage.success(responseMessage.value)
 })
 </script>
+<style lang="scss" scoped>
+@media only screen and (max-width: 768px) {
+    .el-table--large {
+        :deep(.cell) {
+            padding: 0 8px;
+        }
+    }
+}
+</style>

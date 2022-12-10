@@ -1,6 +1,15 @@
 <template>
     <el-form v-loading="loading">
-        <OrderProductTable :productList="orderForm.productList"></OrderProductTable>
+        <el-table :data="orderForm.productList" style="width: 100%">
+            <el-table-column label="產品名稱" prop="productName" />
+            <el-table-column label="價格" prop="price" width="60" />
+            <el-table-column label="數量" prop="amount" width="60" />
+            <el-table-column label="動作" width="60">
+                <template #default="{ row }">
+                    <el-button size="small" type="danger" circle @click="deleteProductFromOrderForm(row.productId)"><i-ep-delete /></el-button>
+                </template>
+            </el-table-column>
+        </el-table>
         <el-form-item label="標籤">
             <el-select v-model="orderForm.tagList" multiple>
                 <el-option v-for="item in options" :key="item" :label="item" :value="item"></el-option>
@@ -35,14 +44,13 @@
     </el-dialog>
 </template>
 <script setup>
-import OrderProductTable from "./OrderProductTable.vue"
 import { useCheckState } from "@/composables/useCheckState"
 import { useFetchStaff } from "@/composables/useFetchStaff"
 import { toRefs, ref } from "vue"
 
-import { ElMessage } from 'element-plus'
+import { ElMessage } from "element-plus"
 
-const { orderForm, addOrder, deleteAllProductFromOrderForm, loading, responseMessage } = useCheckState()
+const { orderForm, addOrder, deleteProductFromOrderForm, deleteAllProductFromOrderForm, loading, responseMessage } = useCheckState()
 toRefs(orderForm)
 
 const dialogVisible = ref(false)

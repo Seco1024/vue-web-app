@@ -3,7 +3,7 @@
         <el-menu class="el-menu-vertical" :default-active="router.currentRoute.value.path" :collapse="isCollapse" router>
             <div class="logo">
                 <cerana-logo class="img"></cerana-logo>
-                <span v-if="!isCollapse" class="title">CeranaPOS</span>
+                <span v-if="!isCollapse" class="title">CLedger</span>
             </div>
             <el-menu-item v-for="route in sysRoutes[0].children" :key="('/system/' + route.path)" :index="('/system/' + route.path)">
                 <el-icon v-if="route.path === ''"><Money /></el-icon>
