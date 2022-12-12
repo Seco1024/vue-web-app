@@ -1,4 +1,4 @@
-import { ref, onMounted } from "vue"
+import { ref, computed, onMounted } from "vue"
 import { getIdTokenPromise } from "@/firebase"
 
 const products = ref([])
@@ -42,12 +42,12 @@ export const useFetchProduct = () => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${idToken}`,
+                    Authorization: `Bearer ${idToken}`,
                 },
-                body: JSON.stringify({ 
-                    name: name, 
-                    type: type, 
-                    price: Number(price)
+                body: JSON.stringify({
+                    name: name,
+                    type: type,
+                    price: Number(price),
                 }),
             })
             const data = await res.json()
@@ -63,16 +63,17 @@ export const useFetchProduct = () => {
         const idToken = await getIdTokenPromise()
         requestState.value = REQUEST_IN_PROGRESS
         try {
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/product/${pid}`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/product?pid=${pid}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${idToken}`,
+                    Authorization: `Bearer ${idToken}`,
                 },
                 body: JSON.stringify({
-                    name: name, 
+                    pid: pid,
+                    name: name,
                     type: type,
-                    price: Number(price)
+                    price: price,
                 }),
             })
             const data = await res.json()
@@ -108,5 +109,14 @@ export const useFetchProduct = () => {
         fetchProduct()
     })
 
-    return { products, fetchProduct, addProduct, updateProduct, deleteProduct, loading, error, responseMessage }
+    return {
+        products,
+        fetchProduct,
+        addProduct,
+        updateProduct,
+        deleteProduct,
+        loading,
+        error,
+        responseMessage,
+    }
 }

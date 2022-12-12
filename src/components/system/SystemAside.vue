@@ -5,10 +5,10 @@
                 <cerana-logo class="img"></cerana-logo>
                 <span v-if="!isCollapse" class="title">CLedger</span>
             </div>
-            <el-menu-item v-for="route in sysRoutes[0].children" :key="('/system/' + route.path)" :index="('/system/' + route.path)">
+            <el-menu-item v-for="route in sysRoutes[0].children" :key="'/system/' + route.path" :index="'/system/' + route.path">
                 <el-icon v-if="route.path === ''"><Money /></el-icon>
                 <el-icon v-if="route.path === 'product'"><ShoppingBag /></el-icon>
-                <el-icon v-if="(route.path === 'order')"><List /></el-icon>
+                <el-icon v-if="route.path === 'order'"><List /></el-icon>
                 <el-icon v-if="route.path === 'staff'"><Postcard /></el-icon>
                 <el-icon v-if="route.path === 'report'"><DataAnalysis /></el-icon>
                 <template #title>{{ route.name }}</template>
@@ -18,13 +18,13 @@
 </template>
 
 <script setup>
-import { Money, ShoppingBag, List, Postcard, DataAnalysis } from "@element-plus/icons-vue";
+import { Money, ShoppingBag, List, Postcard, DataAnalysis } from "@element-plus/icons-vue"
 
 import { computed } from "vue"
 import { useRouter } from "vue-router"
 
 import CeranaLogo from "@/components/icons/CeranaLogo.vue"
-import { useCollapse } from "@/composables/useCollapse";
+import { useCollapse } from "@/composables/useCollapse"
 
 const { isCollapse } = useCollapse()
 
@@ -37,7 +37,7 @@ const sysRoutes = computed(() => {
 
 <style scoped lang="less">
 @media (max-width: 512px) {
-    :deep(.el-menu--collapse){
+    :deep(.el-menu--collapse) {
         display: none;
     }
     .nav-menu {

@@ -15,16 +15,29 @@
                 <el-row class="note">
                     <el-col :sm="10" :xs="24">
                         <p>負責人：{{ row.staffName }}</p>
+<<<<<<< HEAD
                         <p>建立時間：{{ row.timestamp }}</p>
                         <p>總價：{{ row.totalPrice }}</p>
+=======
+                        <p>建立時間：{{ convertTimestamp(row.timestamp) }}</p>
+                        <p>折扣：{{ row.discount }} 元</p>
+                        <p>總價：{{ row.totalPrice }} 元</p>
+>>>>>>> cd77f4f319a5886f57fc62fa01d9be999b361907
                         <p>備註：{{ row.note }}</p>
                     </el-col>
                     <el-col :md="14" :xs="24">
-                        <el-table :data="row.productList" stripe show-summary>
+                        <el-table :data="row.productList" stripe>
                             <el-table-column prop="productName" label="名稱" />
                             <el-table-column prop="amount" label="數量" />
+<<<<<<< HEAD
                             <el-table-column prop="price" label="價錢" />
+=======
+                            <el-table-column prop="price" label="價錢">
+                                <template #default="{ row }"> ${{ row.price * row.amount }} </template>
+                            </el-table-column>
+>>>>>>> cd77f4f319a5886f57fc62fa01d9be999b361907
                         </el-table>
+                        <div style="text-align: right">總金額：${{ Number(row.totalPrice) + Number(row.discount) }}</div>
                     </el-col>
                 </el-row>
             </template>
@@ -64,11 +77,21 @@
 
 <script setup>
 import { onMounted } from "vue"
+<<<<<<< HEAD
 import { useFetchOrder } from "@/composables/useFetchOrder"
 
 import { ElMessage } from "element-plus";
 
 const { orders, fetchOrder, deleteOrder, loading } = useFetchOrder()
+=======
+
+import { useFetchOrder } from "@/composables/useFetchOrder"
+
+import { ElMessage } from "element-plus"
+
+const { orders, fetchOrder, deleteOrder, loading } = useFetchOrder()
+
+>>>>>>> cd77f4f319a5886f57fc62fa01d9be999b361907
 const filterTag = (value, row) => {
     console.log(row.tagList)
     console.log(row.tagList.some((tag) => tag.valueOf() === value))
@@ -79,9 +102,16 @@ const convertTimestamp = (timestamp) => {
     const year = date.getFullYear()
     const month = date.getMonth() + 1
     const day = date.getDate()
+<<<<<<< HEAD
     const hour = date.getHours()
     const minute = date.getMinutes()
     const second = date.getSeconds()
+=======
+    const hour = String(date.getHours()).padStart(2, "0")
+    const minute = String(date.getMinutes()).padStart(2, "0")
+    const second = String(date.getSeconds()).padStart(2, "0")
+
+>>>>>>> cd77f4f319a5886f57fc62fa01d9be999b361907
     return `${year}/${month}/${day} ${hour}:${minute}:${second}`
 }
 onMounted(() => {
@@ -94,6 +124,7 @@ const handleDelete = async (orderId) => {
     ElMessage.success("刪除成功")
     fetchOrder(new Date().getTime(), 20)
 }
+<<<<<<< HEAD
 const timeRange = ref([])
 const defaultTimeRange = ref([new Date() - 3600 * 1000 * 24 * 7, new Date()])
 const search = () => {
@@ -129,6 +160,46 @@ const shortcuts = [
         },
     },
 ]
+=======
+
+// const timeRange = ref([])
+// const defaultTimeRange = ref([new Date() - 3600 * 1000 * 24 * 7, new Date()])
+
+// const search = () => {
+//     console.log(timeRange.value)
+//     // fetchOrder(timeRange.value[0].getTime(), timeRange.value[1].getTime())
+// }
+
+// const shortcuts = [
+//     {
+//         text: "上週",
+//         value: () => {
+//             const end = new Date()
+//             const start = new Date()
+//             start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+//             return [start, end]
+//         },
+//     },
+//     {
+//         text: "上個月",
+//         value: () => {
+//             const end = new Date()
+//             const start = new Date()
+//             start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+//             return [start, end]
+//         },
+//     },
+//     {
+//         text: "前三個月",
+//         value: () => {
+//             const end = new Date()
+//             const start = new Date()
+//             start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+//             return [start, end]
+//         },
+//     },
+// ]
+>>>>>>> cd77f4f319a5886f57fc62fa01d9be999b361907
 </script>
 
 <style lang="scss" scoped>

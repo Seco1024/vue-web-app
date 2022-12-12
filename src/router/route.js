@@ -26,26 +26,26 @@ export const routes = [
             {
                 path: "",
                 name: "結帳介面",
-                icon: 'Money',
-                component: () => import("@/views/check")
+                icon: "Money",
+                component: () => import("@/views/check"),
             },
             {
                 path: "product",
                 name: "商品管理",
-                icon: 'ShoppingBag',
-                component: () => import("@/views/product")
+                icon: "ShoppingBag",
+                component: () => import("@/views/product"),
             },
             {
                 path: "order",
                 name: "交易紀錄",
-                icon: 'List',
-                component: () => import("@/views/order")
+                icon: "List",
+                component: () => import("@/views/order"),
             },
             {
                 path: "staff",
                 name: "人員",
-                icon: 'Postcard',
-                component: () => import("@/views/staff")
+                icon: "Postcard",
+                component: () => import("@/views/staff"),
             },
             // {
             //     path: "report",

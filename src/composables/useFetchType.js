@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { ref } from "vue"
+=======
+import { ref, computed, onMounted } from "vue"
+>>>>>>> cd77f4f319a5886f57fc62fa01d9be999b361907
 import { getIdTokenPromise } from "@/firebase"
 
 export const useFetchType = () => {

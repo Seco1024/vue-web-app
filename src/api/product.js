@@ -137,7 +137,7 @@ export const deleteProduct = async (pid) => {
             },
         })
         console.log("[deleteProduct]response:", response)
-        
+
         if (!response.data.success) {
             ElMessage({
                 type: "error",
@@ -147,7 +147,7 @@ export const deleteProduct = async (pid) => {
 
             return null
         }
-        
+
         return response.data.product
     } catch (error) {
         ElMessage({

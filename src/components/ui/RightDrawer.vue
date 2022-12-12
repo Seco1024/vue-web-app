@@ -8,8 +8,6 @@
     </el-drawer>
 </template>
 <script setup>
-import { computed } from "vue"
-
 defineProps({
     modelValue: {
         type: Boolean,
@@ -27,6 +25,7 @@ defineProps({
 </script>
 <style lang="scss">
 .el-drawer {
+    width: 100% !important;
     max-width: 350px !important;
 }
 </style>

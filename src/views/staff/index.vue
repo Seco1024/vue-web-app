@@ -1,11 +1,10 @@
 <template>
     <el-row class="wrapper">
-      <el-col :xs="24">
-        <FloatCard margin="ml-0">
-            <MainTable>
-            </MainTable>
-        </FloatCard>
-      </el-col>
+        <el-col :xs="24">
+            <FloatCard margin="ml-0">
+                <MainTable> </MainTable>
+            </FloatCard>
+        </el-col>
     </el-row>
 </template>
 <script setup>

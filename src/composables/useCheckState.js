@@ -62,7 +62,7 @@ export const useCheckState = () => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${idToken}`,
+                    Authorization: `Bearer ${idToken}`,
                 },
                 body: JSON.stringify({
                     productList: orderForm.productList,
@@ -92,6 +92,6 @@ export const useCheckState = () => {
         addOrder,
         loading,
         error,
-        responseMessage
+        responseMessage,
     }
 }
