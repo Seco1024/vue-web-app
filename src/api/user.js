@@ -59,7 +59,12 @@ export const signOut = async () => {
     loading.close()
 }
 
-export const signUp = async ({ firstName, lastName, phoneNumber, howToKnowUs }) => {
+export const signUp = async ({
+    firstName,
+    lastName,
+    phoneNumber,
+    howToKnowUs,
+}) => {
     const main = async () => {
         const idToken = await getIdTokenPromise()
         if (!idToken) {

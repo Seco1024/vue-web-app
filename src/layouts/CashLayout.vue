@@ -1,9 +1,9 @@
 <template>
     <el-row>
-        <el-col :md="14">
+        <el-col :md="14" :lg="16">
             <slot name="main"></slot>
         </el-col>
-        <el-col :md="10">
+        <el-col :md="10" :lg="8">
             <el-card>
                 <slot name="list"></slot>
             </el-card>

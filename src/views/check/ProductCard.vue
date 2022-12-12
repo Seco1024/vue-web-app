@@ -10,7 +10,6 @@ defineEmits(["click"])
 defineProps({
     detail: {
         type: Object,
-        default: {},
     },
 })
 </script>

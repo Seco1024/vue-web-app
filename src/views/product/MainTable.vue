@@ -1,47 +1,49 @@
 <template>
-    <el-button size="large" type="primary" @click="handleAdd">+ 新增產品</el-button>
-    <el-table
-        v-loading="loading"
-        :data="products"
-        stripe
-        max-height="75vh"
-        size="large"
-        @row-click="openEdit"
-        empty-text="無資料"
-        style="width: 100%"
-    >
-        <el-table-column prop="name" label="名稱" />
-        <el-table-column prop="type" label="種類">
-            <template #default="scope">
-                {{ scope.row.type }}
+    <div>
+        <el-button size="large" type="primary" @click="handleAdd">+ 新增產品</el-button>
+        <el-table
+            v-loading="loading"
+            :data="products"
+            stripe
+            max-height="75vh"
+            size="large"
+            @row-click="openEdit"
+            empty-text="無資料"
+            style="width: 100%"
+        >
+            <el-table-column prop="name" label="名稱" />
+            <el-table-column prop="type" label="種類">
+                <template #default="scope">
+                    {{ scope.row.type }}
+                </template>
+            </el-table-column>
+            <el-table-column label="價錢" width="65">
+                <template #default="scope"> ${{ scope.row.price }} </template>
+            </el-table-column>
+            <el-table-column label="動作" width="125">
+                <template #default="{ $index, row }">
+                    <el-button size="small" @click="handleEdit($index, row)"><i-ep-edit /></el-button>
+                    <el-button size="small" type="danger" @click="confirmDelete(row.pid)"><i-ep-delete /></el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        <RightDrawer title="更新商品" v-model="openEdit">
+            <ProductForm :form="form" />
+            <template #footer>
+                <el-button size="large" @click.prevent="cancel">取消</el-button>
+                <el-button size="large" type="primary" @click.prevent="confirmEdit">確認編輯</el-button>
             </template>
-        </el-table-column>
-        <el-table-column label="價錢" width="65">
-            <template #default="scope"> ${{ scope.row.price }} </template>
-        </el-table-column>
-        <el-table-column label="動作" width="125">
-            <template #default="{ $index, row }">
-                <el-button size="small" @click="handleEdit($index, row)"><i-ep-edit /></el-button>
-                <el-button size="small" type="danger" @click="confirmDelete(row.pid)"><i-ep-delete /></el-button>
+            <!-- {{ form }} -->
+        </RightDrawer>
+        <RightDrawer title="新增商品" v-model="openAdd">
+            <ProductForm :form="form" />
+            <template #footer>
+                <el-button size="large" @click.prevent="cancel">取消</el-button>
+                <el-button size="large" type="primary" @click.prevent="confirmAdd">確認新增</el-button>
             </template>
-        </el-table-column>
-    </el-table>
-    <RightDrawer title="更新商品" v-model="openEdit">
-        <ProductForm :form="form" />
-        <template #footer>
-            <el-button size="large" @click.prevent="cancel">取消</el-button>
-            <el-button size="large" type="primary" @click.prevent="confirmEdit">確認編輯</el-button>
-        </template>
-        <!-- {{ form }} -->
-    </RightDrawer>
-    <RightDrawer title="新增商品" v-model="openAdd">
-        <ProductForm :form="form" />
-        <template #footer>
-            <el-button size="large" @click.prevent="cancel">取消</el-button>
-            <el-button size="large" type="primary" @click.prevent="confirmAdd">確認新增</el-button>
-        </template>
-        <!-- {{ form }} -->
-    </RightDrawer>
+            <!-- {{ form }} -->
+        </RightDrawer>
+    </div>
 </template>
 
 <script setup>
@@ -76,10 +78,13 @@ const handleEdit = (index, row) => {
 
 const confirmEdit = async () => {
     openEdit.value = false
-
-    await updateProduct(form)
-    ElMessage.success(responseMessage.value)
-    await fetchProduct()
+    try {
+        await updateProduct(form)
+        ElMessage.success(responseMessage.value)
+        await fetchProduct()
+    } catch (error) {
+        ElMessage.error(error)
+    }
 }
 
 const openAdd = ref(false)
@@ -97,10 +102,13 @@ const handleAdd = () => {
 
 const confirmAdd = async () => {
     openAdd.value = false
-
-    await addProduct(form)
-    ElMessage.success(responseMessage.value)
-    await fetchProduct()
+    try {
+        await addProduct(form)
+        ElMessage.success(responseMessage.value)
+        await fetchProduct()
+    } catch (error) {
+        ElMessage.error(error)
+    }
 }
 
 const cancel = () => {
@@ -109,9 +117,13 @@ const cancel = () => {
 }
 
 const confirmDelete = async (pid) => {
-    await deleteProduct(pid)
-    ElMessage.success(responseMessage.value)
-    await fetchProduct()
+    try {
+        await deleteProduct(pid)
+        ElMessage.success(responseMessage.value)
+        await fetchProduct()
+    } catch (error) {
+        ElMessage.error(error)
+    }
 }
 
 onMounted(async () => {

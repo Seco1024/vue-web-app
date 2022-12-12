@@ -25,9 +25,7 @@
                             <el-table-column prop="productName" label="名稱" />
                             <el-table-column prop="amount" label="數量" />
                             <el-table-column label="價錢">
-                                <template #default="{ row }">
-                                    ${{ row.price * row.amount }}
-                                </template>
+                                <template #default="{ row }"> ${{ row.price * row.amount }} </template>
                             </el-table-column>
                         </el-table>
                     </el-col>
@@ -68,15 +66,13 @@
 </template>
 
 <script setup>
-import { onMounted, computed } from "vue"
+import { onMounted } from "vue"
 
 import { useFetchOrder } from "@/composables/useFetchOrder"
 
-import { ElMessage } from "element-plus";
+import { ElMessage } from "element-plus"
 
 const { orders, fetchOrder, deleteOrder, loading } = useFetchOrder()
-
-const productTotalPrice = computed((productList) => productList.amuont * productList.price)
 
 const filterTag = (value, row) => {
     console.log(row.tagList)
@@ -107,43 +103,43 @@ const handleDelete = async (orderId) => {
     fetchOrder(new Date().getTime(), 20)
 }
 
-const timeRange = ref([])
-const defaultTimeRange = ref([new Date() - 3600 * 1000 * 24 * 7, new Date()])
+// const timeRange = ref([])
+// const defaultTimeRange = ref([new Date() - 3600 * 1000 * 24 * 7, new Date()])
 
-const search = () => {
-    console.log(timeRange.value)
-    // fetchOrder(timeRange.value[0].getTime(), timeRange.value[1].getTime())
-}
+// const search = () => {
+//     console.log(timeRange.value)
+//     // fetchOrder(timeRange.value[0].getTime(), timeRange.value[1].getTime())
+// }
 
-const shortcuts = [
-    {
-        text: "上週",
-        value: () => {
-            const end = new Date()
-            const start = new Date()
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
-            return [start, end]
-        },
-    },
-    {
-        text: "上個月",
-        value: () => {
-            const end = new Date()
-            const start = new Date()
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
-            return [start, end]
-        },
-    },
-    {
-        text: "前三個月",
-        value: () => {
-            const end = new Date()
-            const start = new Date()
-            start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
-            return [start, end]
-        },
-    },
-]
+// const shortcuts = [
+//     {
+//         text: "上週",
+//         value: () => {
+//             const end = new Date()
+//             const start = new Date()
+//             start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
+//             return [start, end]
+//         },
+//     },
+//     {
+//         text: "上個月",
+//         value: () => {
+//             const end = new Date()
+//             const start = new Date()
+//             start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
+//             return [start, end]
+//         },
+//     },
+//     {
+//         text: "前三個月",
+//         value: () => {
+//             const end = new Date()
+//             const start = new Date()
+//             start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
+//             return [start, end]
+//         },
+//     },
+// ]
 </script>
 
 <style lang="scss" scoped>
@@ -160,5 +156,3 @@ const shortcuts = [
     margin-right: 3px;
 }
 </style>
-
-

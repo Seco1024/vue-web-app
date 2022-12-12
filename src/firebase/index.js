@@ -1,6 +1,13 @@
 import { initializeApp } from "firebase/app"
 import { getAnalytics } from "firebase/analytics"
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, getIdToken, signOut } from "firebase/auth"
+import {
+    getAuth,
+    signInWithPopup,
+    GoogleAuthProvider,
+    onAuthStateChanged,
+    getIdToken,
+    signOut,
+} from "firebase/auth"
 
 const firebaseConfig = {
     apiKey: "AIzaSyAiavyY50N2MiF9Zwl4R6em6dp_ZOeWn7M",
@@ -24,7 +31,10 @@ export default {
 
 export const _signIn = async () => {
     try {
-        const userCredential = await signInWithPopup(auth, new GoogleAuthProvider())
+        const userCredential = await signInWithPopup(
+            auth,
+            new GoogleAuthProvider()
+        )
         console.log(userCredential.user, " logged in!")
     } catch (error) {
         console.log(error)
