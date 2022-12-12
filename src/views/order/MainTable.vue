@@ -24,10 +24,11 @@
                         <el-table :data="row.productList" stripe>
                             <el-table-column prop="productName" label="名稱" />
                             <el-table-column prop="amount" label="數量" />
-                            <el-table-column label="價錢">
+                            <el-table-column prop="price" label="價錢">
                                 <template #default="{ row }"> ${{ row.price * row.amount }} </template>
                             </el-table-column>
                         </el-table>
+                        <div style="text-align: right">總金額：${{ Number(row.totalPrice) + Number(row.discount) }}</div>
                     </el-col>
                 </el-row>
             </template>
