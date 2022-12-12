@@ -8,8 +8,6 @@
     </el-drawer>
 </template>
 <script setup>
-import { computed } from "vue"
-
 defineProps({
     modelValue: {
         type: Boolean,

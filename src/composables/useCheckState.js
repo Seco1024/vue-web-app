@@ -31,9 +31,7 @@ export const useCheckState = () => {
     const { products } = useFetchProduct()
 
     const addProductToOrderForm = (product) => {
-        const index = orderForm.productList.findIndex(
-            (item) => item.pid === product.pid
-        )
+        const index = orderForm.productList.findIndex((item) => item.pid === product.pid)
         if (index === -1) {
             const newProduct = {
                 pid: product.pid,
@@ -60,25 +58,22 @@ export const useCheckState = () => {
         requestState.value = REQUEST_IN_PROGRESS
         orderForm.timestamp = new Date().getTime()
         try {
-            const res = await fetch(
-                `${import.meta.env.VITE_API_URL}/api/product/sell-order`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${idToken}`,
-                    },
-                    body: JSON.stringify({
-                        productList: orderForm.productList,
-                        tagList: orderForm.tagList,
-                        staffName: orderForm.staffName,
-                        discount: orderForm.discount,
-                        totalPrice: orderForm.totalPrice,
-                        note: orderForm.note,
-                        timestamp: orderForm.timestamp,
-                    }),
-                }
-            )
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/product/sell-order`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${idToken}`,
+                },
+                body: JSON.stringify({
+                    productList: orderForm.productList,
+                    tagList: orderForm.tagList,
+                    staffName: orderForm.staffName,
+                    discount: orderForm.discount,
+                    totalPrice: orderForm.totalPrice,
+                    note: orderForm.note,
+                    timestamp: orderForm.timestamp,
+                }),
+            })
             const data = await res.json()
             responseMessage.value = data.message
             requestState.value = REQUEST_SUCCESS

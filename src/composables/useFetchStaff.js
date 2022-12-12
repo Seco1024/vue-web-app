@@ -17,16 +17,13 @@ export const useFetchStaff = () => {
         staffs.value = []
         requestState.value = REQUEST_IN_PROGRESS
         try {
-            const res = await fetch(
-                `${import.meta.env.VITE_API_URL}/api/staff`,
-                {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${idToken}`,
-                    },
-                }
-            )
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/staff`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${idToken}`,
+                },
+            })
             const data = await res.json()
             staffs.value = await data.staffList
             responseMessage.value = data.message
@@ -41,17 +38,14 @@ export const useFetchStaff = () => {
         const idToken = await getIdTokenPromise()
         requestState.value = REQUEST_IN_PROGRESS
         try {
-            const res = await fetch(
-                `${import.meta.env.VITE_API_URL}/api/staff`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${idToken}`,
-                    },
-                    body: JSON.stringify({ name, email, phone }),
-                }
-            )
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/staff`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${idToken}`,
+                },
+                body: JSON.stringify({ name, email, phone }),
+            })
             const data = await res.json()
             responseMessage.value = data.message
             requestState.value = REQUEST_SUCCESS
@@ -65,17 +59,14 @@ export const useFetchStaff = () => {
         const idToken = await getIdTokenPromise()
         requestState.value = REQUEST_IN_PROGRESS
         try {
-            const res = await fetch(
-                `${import.meta.env.VITE_API_URL}/api/staff?sid=${sid}`,
-                {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${idToken}`,
-                    },
-                    body: JSON.stringify({ name, email, phone }),
-                }
-            )
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/staff?sid=${sid}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${idToken}`,
+                },
+                body: JSON.stringify({ name, email, phone }),
+            })
             const data = await res.json()
             responseMessage.value = data.message
             requestState.value = REQUEST_SUCCESS
@@ -89,16 +80,13 @@ export const useFetchStaff = () => {
         const idToken = await getIdTokenPromise()
         requestState.value = REQUEST_IN_PROGRESS
         try {
-            const res = await fetch(
-                `${import.meta.env.VITE_API_URL}/api/staff?sid=${sid}`,
-                {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${idToken}`,
-                    },
-                }
-            )
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/staff?sid=${sid}`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${idToken}`,
+                },
+            })
             const data = await res.json()
             responseMessage.value = data.message
             requestState.value = REQUEST_SUCCESS

@@ -14,7 +14,7 @@
 
 <script setup>
 import { useRoute } from "vue-router"
-import { useCollapse } from "@/composables/useCollapse";
+import { useCollapse } from "@/composables/useCollapse"
 
 const route = useRoute()
 
